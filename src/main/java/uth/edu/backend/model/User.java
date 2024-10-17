@@ -1,47 +1,60 @@
 package uth.edu.backend.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "Users", uniqueConstraints = {
+        @UniqueConstraint(name = "UQ__Users__536C85E438E35360", columnNames = {"Username"})
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "UserId", nullable = false)
     private Long id;
 
-    @Column(name = "username", nullable = false, unique = true)
+    @Column(name = "Username", nullable = false)
     private String username;
 
-    @Column(name = "password", nullable = false, length = 1000)
+    @Column(name = "Password", nullable = false, length = 1000)
     private String password;
 
-    @Column(name = "email", nullable = false, unique = true, length = 320)
+    @Column(name = "Email", length = 320)
     private String email;
 
-    @Column(name = "role", nullable = false)
-    private int role;
+    @Column(name = "PhoneNumber", length = 15)
+    private String phoneNumber;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<Profile> profiles = new ArrayList<>();
+    @ColumnDefault("0")
+    @Column(name = "Role", nullable = false)
+    private Integer role;
 
-    public List<Profile> getProfiles() {
-        return profiles;
+    @OneToMany(mappedBy = "user")
+    private Set<Cart> carts = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Order> orders = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserDetail> userDetails = new LinkedHashSet<>();
+
+    public Long getId() {
+        return id;
     }
 
-    public void setProfiles(List<Profile> profiles) {
-        this.profiles = profiles;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -52,31 +65,52 @@ public class User {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
-    public int getRole() {
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(int role) {
-        if (role == 0 || role == 1) {
-            this.role = role;
-        } else {
-            throw new IllegalArgumentException("Role phải là 0 (USER) hoặc 1 (ADMIN)");
-        }
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
-    public Long getId() {
-        return id;
+    public Set<Cart> getCarts() {
+        return carts;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Set<UserDetail> getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(Set<UserDetail> userDetails) {
+        this.userDetails = userDetails;
     }
 
 }
