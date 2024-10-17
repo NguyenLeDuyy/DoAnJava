@@ -22,6 +22,18 @@ public class Profile {
     @Column(name = "phone_number", nullable = false, length = 15)
     private String phoneNumber;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

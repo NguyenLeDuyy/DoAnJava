@@ -2,6 +2,9 @@ package uth.edu.backend.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 public class User {
@@ -21,6 +24,17 @@ public class User {
 
     @Column(name = "role", nullable = false)
     private int role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Profile> profiles = new ArrayList<>();
+
+    public List<Profile> getProfiles() {
+        return profiles;
+    }
+
+    public void setProfiles(List<Profile> profiles) {
+        this.profiles = profiles;
+    }
 
     public String getEmail() {
         return email;
