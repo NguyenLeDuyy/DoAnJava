@@ -1,0 +1,93 @@
+﻿/* login.css */
+/* Cài đặt chung cho body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333; /* Màu nền tối */
+    color: #fff; /* Màu chữ trắng */
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 100vh; /* Chiều cao màn hình */
+    margin: 0;
+}
+
+.login-container {
+    background: rgba(0, 0, 0, 0.8); /* Nền màu đen mờ */
+    padding: 40px; /* Khoảng cách bên trong hộp */
+    border-radius: 10px; /* Bo tròn các góc */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Đổ bóng cho hộp */
+    text-align: center;
+    width: 40%; /* Chiều rộng hộp */
+}
+    
+h2 {
+    margin-bottom: 30px; /* Khoảng cách bên dưới tiêu đề */
+    font-size: 24px; /* Kích thước chữ */
+    letter-spacing: 2px; /* Khoảng cách giữa các ký tự */
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+    /* Thiết lập ô nhập liệu */
+    input[type="text"], input[type="password"] {
+        width: 100%; /* Chiếm 100% chiều rộng hộp cha */
+        padding: 10px; /* Khoảng cách bên trong ô */
+        margin: 10px 0; /* Khoảng cách trên và dưới ô */
+        border: none; /* Loại bỏ đường viền */
+        border-radius: 5px; /* Bo tròn các góc */
+        background: #444; /* Màu nền xám đậm */
+        color: #fff; /* Màu chữ trắng */
+    }
+    /* Cài đặt nút đăng nhập */
+.login-container button[type="submit"] {
+    background: #fff; /* Nền màu trắng */
+    color: #000; /* Chữ màu đen */
+    border-radius: 10px; /* Bo tròn các góc */
+    cursor: pointer; /* Hiển thị con trỏ khi rê chuột */
+    font-size: 16px; /* Kích thước chữ */
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    padding: 10px; /* Khoảng cách bên trong ô */
+}
+
+
+    button[type="submit"]:hover {
+        background-color: #3e8e41;
+    }
+
+#error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.help {
+    margin: 15px 0; /* Khoảng cách trên và dưới */
+    color: #fff; 
+    }
+
+    .help a {
+        color: #8aa8aa; /* Màu chữ cho liên kết */
+        
+    }
+
+/* Thiết lập phần icon mạng xã hội */
+.social-icons {
+    display: flex;
+    justify-content: center; /* Căn giữa các icon */
+    margin-top: 20px;
+}
+
+    .social-icons a {
+        margin: 0 10px; /* Khoảng cách giữa các icon */
+    }
+
+    .social-icons img {
+        width: 32px; /* Chiều rộng icon */
+        height: 32px; /* Chiều cao icon */
+    }
