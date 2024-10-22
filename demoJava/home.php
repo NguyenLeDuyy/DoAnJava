@@ -19,8 +19,8 @@
 <body>
     <?php require_once "components/header.php" ?>
     <main id="homepage">
-    <?php require_once "components/profile-user.php" ?>
+    
     </main>
-    <?php require_once "components/fooder.php" ?>
+    <?php require_once "components/footer.php" ?>
 </body>
 </html>
