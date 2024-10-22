@@ -3,6 +3,7 @@ package uth.edu.backend.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import uth.edu.backend.entity.User;
 
 @Entity
 public class UserDetail {

@@ -1,7 +1,10 @@
-package uth.edu.backend.model;
+package uth.edu.backend.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+import uth.edu.backend.model.Cart;
+import uth.edu.backend.model.Order;
+import uth.edu.backend.model.UserDetail;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -29,8 +32,8 @@ public class User {
     private String phoneNumber;
 
     @ColumnDefault("0")
-    @Column(name = "Role", nullable = false)
-    private Integer role;
+    @Column(name = "Role")
+    private Integer role = 0; // Set default value to 0
 
     @OneToMany(mappedBy = "user")
     private Set<Cart> carts = new LinkedHashSet<>();
