@@ -1,3 +1,0 @@
-<fooder class="fooder">
-    
-</fooder>
