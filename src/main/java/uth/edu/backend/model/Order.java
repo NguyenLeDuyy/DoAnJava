@@ -3,6 +3,7 @@ package uth.edu.backend.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Nationalized;
+import uth.edu.backend.entity.User;
 
 import java.math.BigDecimal;
 import java.time.Instant;

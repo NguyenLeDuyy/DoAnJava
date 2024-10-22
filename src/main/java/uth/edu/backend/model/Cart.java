@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import uth.edu.backend.entity.User;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
