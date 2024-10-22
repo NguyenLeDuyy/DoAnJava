@@ -21,7 +21,7 @@
                 <div class="logo">
                     <a href="" title="">
                         <!--Chỗ này thêm logo -->
-                        <img src="resources/images/logo-hoa.jpg" alt="">
+                        <img src="resources/images/logo2.png" alt="">
                     </a>
                 </div>
                 <div class="header-search">
@@ -44,7 +44,16 @@
                         <button class="btn-search">
                             <span class="uk-icon" uk-icon="search"></span>
                         </button>
+
                     </form>
+                    <div class="most-searched">
+                        <span class="search-item">Most Searched: </span>
+                        <a href="" title="" class="search-item">Hoa hồng</a>
+                        <a href="" title="" class="search-item">Hoa sinh nhật</a>
+                        <a href="" title="" class="search-item">Hoa giảm giá</a>
+                        <a href="" title="" class="search-item">Hoa cưới</a>
+                        <a href="" title="" class="search-item">Hoa để bàn</a>
+                    </div>
                 </div>
                 <div class="header-widget">
                     <div class="uk-flex">
