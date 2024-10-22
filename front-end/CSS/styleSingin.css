@@ -1,0 +1,109 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif; /* Đặt font chữ cho toàn bộ trang */
+    background-color: #333; /* Màu nền tối */
+    }
+
+* {
+    box-sizing: border-box; /* Đảm bảo padding và border được tính vào tổng chiều rộng và chiều cao của phần tử */
+}
+h1 {
+    margin-bottom: 30px; /* Khoảng cách bên dưới tiêu đề */
+    font-size: 24px; /* Kích thước chữ */
+    letter-spacing: 2px; /* Khoảng cách giữa các ký tự */
+    text-align:center;
+}
+/* Các trường nhập liệu có chiều rộng đầy đủ */
+input[type=text], input[type=password] {
+    width: 100%; /* Chiều rộng 100% */
+    padding: 15px; /* Khoảng cách bên trong 15px */
+    margin: 5px 0 22px 0; /* Khoảng cách ngoài: 5px trên, 0px phải, 22px dưới, 0px trái */
+    display: inline-block; /* Hiển thị dưới dạng khối nội tuyến */
+    border-radius: 5px; /* Bo tròn các góc */
+    background: #f1f1f1; /* Màu nền */
+}
+
+    /* Thêm màu nền khi các trường nhập liệu được focus */
+    input[type=text]:focus, input[type=password]:focus {
+        background-color: #ddd; /* Màu nền khi focus */
+        outline: none; /* Không có viền ngoài */
+    }
+
+/* Đặt kiểu cho tất cả các nút */
+button {
+    background-color: #04AA6D; /* Màu nền */
+    color: white; /* Màu chữ */
+    padding: 14px 20px; /* Khoảng cách bên trong: 14px trên và dưới, 20px trái và phải */
+    margin: 8px 0; /* Khoảng cách ngoài: 8px trên và dưới, 0px trái và phải */
+    border: none; /* Không có viền */
+    cursor: pointer; /* Con trỏ chuột dạng pointer */
+    width: 100%; /* Chiều rộng 100% */
+    opacity: 0.9; /* Độ mờ */
+}
+
+    button:hover {
+        opacity: 1; /* Độ mờ khi hover */
+    }
+
+/* Kiểu bổ sung cho nút hủy */
+.cancelbtn {
+    padding: 14px 20px; /* Khoảng cách bên trong */
+    background-color: #f44336; /* Màu nền */
+}
+
+/* Căn nút hủy và nút đăng ký ngang nhau và thêm chiều rộng bằng nhau */
+.cancelbtn, .signupbtn {
+    float: left; /* Căn trái */
+    width: 50%; /* Chiều rộng 50% */
+}
+
+/* Thêm khoảng cách cho các phần tử container */
+.padding {
+    padding: 16px; /* Khoảng cách bên trong */
+}
+
+
+
+/* Nội dung/khung của Modal */
+.sigin-container {
+    background-color: #000; /* Màu nền */
+    color: white;
+    margin: 5% auto 15% auto; /* Khoảng cách ngoài: 5% trên, tự động trái và phải, 15% dưới */
+    width: 70%; /* Chiều rộng 80% */
+    padding: 16px; /* Khoảng cách bên trong */
+}
+
+/* Kiểu cho đường ngang */
+hr {
+    border: 1px solid #f1f1f1; /* Viền */
+    margin-bottom: 25px; /* Khoảng cách dưới 25px */
+}
+
+/* Nút đóng (x) */
+.close {
+    position: absolute; /* Vị trí tuyệt đối */
+    right: 35px; /* Căn phải 35px */
+    top: 15px; /* Căn trên 15px */
+    font-size: 40px; /* Kích thước chữ 40px */
+    font-weight: bold; /* Đậm */
+    color: #f1f1f1; /* Màu chữ */
+}
+
+    .close:hover,
+    .close:focus {
+        color: #f44336; /* Màu chữ khi hover hoặc focus */
+        cursor: pointer; /* Con trỏ chuột dạng pointer */
+    }
+
+/* Xóa float */
+.clearfix::after {
+    content: ""; /* Nội dung trống */
+    clear: both; /* Xóa float */
+    display: table; /* Hiển thị dưới dạng bảng */
+}
+
+/* Thay đổi kiểu cho nút hủy và nút đăng ký trên màn hình rất nhỏ */
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+        width: 100%; /* Chiều rộng 100% */
+    }
+}

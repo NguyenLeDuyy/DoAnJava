@@ -1,0 +1,118 @@
+﻿/* Thiết lập kiểu chữ và màu nền cho toàn bộ trang */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #222222; /* Màu nền xám tối */
+    color: #fff; /* Màu chữ trắng */
+}
+
+/* Phần Header (đầu trang) */
+.header {
+   height:50px;
+    background-color: #FF5733; /* Màu nền xám đậm cho header */
+    color: #fff; /* Màu chữ trắng */
+    padding: 10px 20px; /* Khoảng cách từ cạnh tới chữ */
+    justify-content: space-between; /* Căn giữa và dàn đều các phần tử */
+    align-items: center; /* Canh giữa các phần tử theo chiều dọc */
+    display: flex; /* Sử dụng flexbox để sắp xếp các phần tử */
+    justify-content:right; /* Căn các phần tử sang bên phải */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    float:right;
+    width:75%
+    
+}
+
+    .header h1 {       
+        font-size: 50px; /* Kích thước chữ của logo */
+        margin-right:73%;
+        
+    }
+
+
+/* Phần Sidebar (thanh điều hướng bên trái) */
+.sidebar {
+    position: fixed; /* Đặt thanh điều hướng cố định bên trái */
+    top: 0;
+    left: 0;
+    height: 100%; /* Chiều cao 100% so với cửa sổ trình duyệt */
+    width: 25%; /* Chiều rộng thanh điều hướng */
+    background-color: #222; /* Màu nền xám tối */
+    padding-top: 20px; /* Khoảng cách từ trên xuống */
+    display: flex;
+    flex-direction: column; /* Sắp xếp các mục theo chiều dọc */
+}
+
+    .sidebar a {
+        color: #fff; /* Màu chữ trắng cho các liên kết trong sidebar */
+        padding: 15px; /* Khoảng cách nội dung trong mỗi liên kết */
+        text-decoration: none; /* Bỏ gạch chân của liên kết */
+        font-size: 18px; /* Kích thước chữ */
+        border-bottom: 1px solid #444; /* Đường viền giữa các mục */
+    }
+
+        .sidebar a:hover {
+            background-color: #444; /* Đổi màu nền khi hover chuột vào liên kết */
+        }
+
+/* Phần nội dung chính */
+.main-content {
+
+    margin-left:26%; /* Đẩy nội dung chính sang phải để không bị che khuất bởi sidebar */
+    padding: 20px; /* Khoảng cách từ viền ngoài đến nội dung */
+   
+}
+
+    .main-content h2 {
+        font-size: 36px; /* Kích thước chữ tiêu đề */
+        margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+    }
+
+    .main-content p {
+        font-size: 18px; /* Kích thước chữ cho đoạn văn */
+    }
+
+/* Phần vòng tròn tiến trình */
+.progress-container {
+    display: flex;
+    gap: 40px; /* Khoảng cách giữa các vòng tròn */
+    margin-top: 40px; /* Khoảng cách từ các phần trên xuống */
+}
+
+.progress-circle {
+    width: 120px; /* Đường kính vòng tròn */
+    height: 120px;
+    border-radius: 50%; /* Bo tròn các góc để tạo hình tròn */
+    background: conic-gradient(#FF5733 0% 80%, #444 80%); /* Tạo gradient hình nón cho vòng tròn */
+    display: flex;
+    align-items: center; /* Căn giữa nội dung theo chiều dọc */
+    justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+    font-size: 24px; /* Kích thước chữ hiển thị tỷ lệ phần trăm */
+    color: white; /* Màu chữ trắng */
+    font-weight: bold; /* Chữ đậm */
+}
+
+    .progress-circle .label {
+        font-size: 14px; /* Kích thước chữ cho nhãn dưới tỷ lệ phần trăm */
+    }
+
+/* Các class hiện tại */
+.login-image, .cart-image {
+    width: 50px; /* Chiều rộng của ảnh */
+    height: 50px; /* Chiều cao của ảnh */
+    border-radius: 50%; /* Tạo góc tròn */
+    overflow: hidden; /* Ẩn phần thừa của ảnh */
+}
+
+    .login-image img, .cart-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Đảm bảo ảnh bao phủ toàn bộ khung */
+    }
+
+    
+
+   
+
+    
+
