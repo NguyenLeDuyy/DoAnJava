@@ -1,10 +1,12 @@
-package uth.edu.backend.model;
+package uth.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import uth.edu.backend.entity.User;
+import uth.edu.backend.model.CartDetail;
+import uth.edu.backend.model.Order;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -19,20 +21,22 @@ public class Cart {
     @Column(name = "CartId", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "UserId", nullable = false)
+    @JsonBackReference
     private User user;
 
-    @ColumnDefault("'Chua thanh toán'")
-    @Column(name = "Status", nullable = false, length = 50)
-    private String status;
+    @ColumnDefault("'Chua thanh toan'")
+    @Column(name = "Status", length = 50)
+    private String status = "Chua thanh toan";
 
     @OneToMany(mappedBy = "cart")
     private Set<CartDetail> cartDetails = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "cart")
     private Set<Order> orders = new LinkedHashSet<>();
+
 
     public Integer getId() {
         return id;
@@ -73,5 +77,4 @@ public class Cart {
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
-
 }
