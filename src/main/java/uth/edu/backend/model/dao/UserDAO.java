@@ -1,7 +1,7 @@
 package uth.edu.backend.model.dao;
 
 import org.springframework.data.repository.CrudRepository;
-import uth.edu.backend.model.User;
+import uth.edu.backend.entity.User;
 
 import java.util.Optional;
 

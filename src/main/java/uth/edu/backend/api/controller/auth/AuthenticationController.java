@@ -18,12 +18,8 @@ public class AuthenticationController {
         this.userService = userService;
     }
     @PostMapping("/register")
-    public ResponseEntity registerUser(@Valid @RequestBody Register register){
-        try {
-            userService.registerUser(register);
-            return ResponseEntity.ok().build();
-        } catch (UserAlreadyExistsException ex) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-        }
-    }
+    public ResponseEntity registerUser(@Valid @RequestBody Register register) {
+    userService.registerUser(register);
+    return ResponseEntity.ok().build();
+}
 }

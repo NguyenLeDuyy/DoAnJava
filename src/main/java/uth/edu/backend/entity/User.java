@@ -1,8 +1,8 @@
 package uth.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
-import uth.edu.backend.model.Cart;
 import uth.edu.backend.model.Order;
 import uth.edu.backend.model.UserDetail;
 
@@ -35,8 +35,9 @@ public class User {
     @Column(name = "Role")
     private Integer role = 0; // Set default value to 0
 
-    @OneToMany(mappedBy = "user")
-    private Set<Cart> carts = new LinkedHashSet<>();
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @JsonManagedReference
+    private Cart cart;
 
     @OneToMany(mappedBy = "user")
     private Set<Order> orders = new LinkedHashSet<>();
@@ -92,12 +93,12 @@ public class User {
         this.role = role;
     }
 
-    public Set<Cart> getCarts() {
-        return carts;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setCarts(Set<Cart> carts) {
-        this.carts = carts;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public Set<Order> getOrders() {
