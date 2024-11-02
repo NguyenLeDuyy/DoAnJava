@@ -1,9 +1,12 @@
 package uth.edu.backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import uth.edu.backend.dto.request.ApiResponse;
 import uth.edu.backend.dto.request.UserCreationRequest;
 import uth.edu.backend.dto.request.UserUpdateRequest;
+import uth.edu.backend.dto.response.UserResponse;
 import uth.edu.backend.entity.User;
 import uth.edu.backend.service.UserService;
 
@@ -17,8 +20,12 @@ public class UserController {
 
     @PostMapping
         //đây là endpoint, một EP sẽ đi kèm vs 1 method
-    User createUser(@RequestBody UserCreationRequest request){ //1 EP sẽ nhận data từ client, xử lý và trả về kết quả, để map data từ request vào object thì dùng @RequestBody
-        return userService.createUser(request);
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request){ //1 EP sẽ nhận data từ client, xử lý và trả về kết quả, để map data từ request vào object thì dùng @RequestBody
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(userService.createUser(request));
+
+        return apiResponse;
     }
 
     @GetMapping
@@ -27,12 +34,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    User getUser(@PathVariable("userId") Long userId){
+    UserResponse getUser(@PathVariable("userId") Long userId){
         return userService.getUser(userId);
     }
 
     @PutMapping("/{userId}")
-    User updateUser(@RequestBody UserUpdateRequest request, @PathVariable Long userId){
+    UserResponse updateUser(@RequestBody UserUpdateRequest request, @PathVariable Long userId){
         return userService.updateUser(userId, request);
     }
 

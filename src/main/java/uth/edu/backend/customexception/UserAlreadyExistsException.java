@@ -1,4 +1,4 @@
-package uth.edu.backend.exception;
+package uth.edu.backend.customexception;
 
 public class UserAlreadyExistsException extends Exception{
 }

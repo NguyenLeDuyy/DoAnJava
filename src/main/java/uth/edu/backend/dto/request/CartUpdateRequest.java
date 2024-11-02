@@ -1,13 +1,14 @@
 package uth.edu.backend.dto.request;
 
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CartUpdateRequest {
-    private String status;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    String status;
 }

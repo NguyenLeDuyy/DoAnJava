@@ -1,5 +1,6 @@
 package uth.edu.backend.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uth.edu.backend.dto.request.CartCreationRequest;
