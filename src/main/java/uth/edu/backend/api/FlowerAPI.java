@@ -12,7 +12,7 @@ import java.util.List;
 
 //@RestController
 public class FlowerAPI {
-    @Autowired
+//    @Autowired
     private FlowerService flowerService;
 
 //    @GetMapping(value="/api/flowerr/")
