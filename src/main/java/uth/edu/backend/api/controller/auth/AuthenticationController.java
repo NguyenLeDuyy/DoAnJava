@@ -1,11 +1,9 @@
 package uth.edu.backend.api.controller.auth;
 
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uth.edu.backend.api.model.Register;
-import uth.edu.backend.exception.UserAlreadyExistsException;
 import uth.edu.backend.service.UserService;
 
 @RestController

@@ -1,61 +1,26 @@
 package uth.edu.backend.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import uth.edu.backend.repository.FlowersRepository;
+import uth.edu.backend.api.model.FlowerDTO;
+import uth.edu.backend.dto.request.ApiResponse;
 import uth.edu.backend.model.Flower;
 
 import java.util.List;
 
-@Service
-public class FlowerService implements IFlowerService {
-    @Autowired
-    private FlowersRepository flowersRepository;
+public interface FlowerService {
+    List<FlowerDTO> findAllFlower(String name);
 
-    @Override
-    public Flower addFlower(Flower flower) {
-        if(flower != null){
-            return flowersRepository.save(flower);
-        }
-        return null;
-    }
+    //them hoa
+    public Flower addFlower(Flower flower);
 
-    @Override
-    public Flower updateFlower(Integer id, Flower flower) {
-        if(flower != null){
-            Flower flower1 = flowersRepository.getById(id);
-            if(flower1 != null){
-                flower1.setFlowerName(flower.getFlowerName());
-                flower1.setDescription(flower.getDescription());
-                flower1.setPrice(flower.getPrice());
-                flower1.setImageUrl(flower.getImageUrl());
-                flower1.setSeason(flower.getSeason());
+    //chinh sua thong tin hoa
+    public Flower updateFlower(Integer id, Flower flower);
 
-                return flowersRepository.save(flower1);
-            }
-        }
-        return null;
-    }
+    //xoa hoa
+    public boolean deleteFlower(Integer id);
 
-    @Override
-    public boolean deleteFlower(Integer id) {
-        if(id >= 1){
-            Flower flower = flowersRepository.getById(id);
-            if(flower != null){
-                flowersRepository.delete(flower);
-                return true;
-            }
-        }
-        return false;
-    }
+    //lay danh sach hoa
+    public List<Flower> getAllFlowers();
 
-    @Override
-    public List<Flower> getAllFlowers() {
-        return flowersRepository.findAll();
-    }
-
-    @Override
-    public Flower getOneFlower(Integer id) {
-        return flowersRepository.getById(id);
-    }
+    //lay ra mot hoa
+    public Flower getOneFlower(Integer id);
 }
