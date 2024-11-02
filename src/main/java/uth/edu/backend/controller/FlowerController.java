@@ -26,7 +26,7 @@ public class FlowerController {
     }
 
     //api add flower
-    @PostMapping("add")
+    @PostMapping("/add")
     public Flower addFlower(@RequestBody Flower flower){
         return flowerService.addFlower(flower);
     }
