@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="resources/css/style.css" />
+
 <footer>
     <div class="footer-container">
         <div class="footer-section">
@@ -33,14 +35,5 @@
                 <li><a href="#"><i class="fab fa-youtube"></i></a></li>
     </ul>
 </div>
-
-        <div class="footer-section">
-            <h4>Đăng ký nhận tin:</h4>
-            <p>Nhận thông tin khuyến mãi và cập nhật sản phẩm mới nhất.</p>
-            <form action="#" method="post">
-                <input type="email" name="email" placeholder="Nhập email của bạn">
-                <button type="submit">Đăng ký</button>
-            </form>
-        </div>
     </div>
 </footer>
