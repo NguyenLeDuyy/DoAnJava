@@ -59,11 +59,10 @@
                 <img src="https://tse3.mm.bing.net/th?id=OIP.k0f4hzMAhDdOR_tLKgmIKgHaEK&pid=Api&P=0&h=180">
             </div>
             <ul class="uk-text-middle">
-                <b>Samsung</b>
-                <li><a href="">Samsung Galaxy S23 Ultra</a></li>
-                <li><a href="">Samsung Galaxy Z Fold5</a></li>
-                <li><a href="">Samsung Galaxy Z Flip5</a></li>
-                <li><a href="">Samsung Galaxy A54</a></li>
+                <li><a href="">Hoa Hồng Đỏ </a></li>
+                <li><a href="">Hoa Hồng Trắng </a></li>
+                <li><a href="">Hoa baby Trắng</a></li>
+                <li><a href="">Hoa baby xanh</a></li>
             </ul>
         </div>
         <div class="Categories">
@@ -71,11 +70,11 @@
                 <img src="https://tse2.mm.bing.net/th?id=OIP.qpK3uezauc3qf-V1KTC_nAHaEK&pid=Api&P=0&h=180">
             </div>
             <ul class="uk-text-middle">
-                <b>Oppo</b>
-                <li><a href="">OPPO Find X6 Pro</a></li>
-                <li><a href="">OPPO Find N2</a></li>
-                <li><a href="">OPPO Reno10 Pro+</a></li>
-                <li><a href="">OPPO Find X5 Pro</a></li>
+                
+                <li><a href="">Hoa Hướng Dương</a></li>
+                <li><a href="">Hoa Đồng Tiền</a></li>
+                <li><a href="">Hoa Cúc Vàng</a></li>
+                <li><a href="">Hoa Cúc TrắngTrắng</a></li>
             </ul>
         </div>
         <div class="Categories">
@@ -83,11 +82,11 @@
                 <img src="https://tse4.mm.bing.net/th?id=OIP._cvEaEmrSyJ0JALpqSC7ngHaEK&pid=Api&P=0&h=180">
             </div>
             <ul class="uk-text-middle">
-                <b>Redmi</b>
-                <li><a href="">Redmi Note 12 Pro+</a></li>
-                <li><a href="">Redmi K60 Pro</a></li>
-                <li><a href="">Redmi Note 12 Turbo</a></li>
-                <li><a href="">Redmi K50 Ultra</a></li>
+               
+                <li><a href="">Hoa Lan</a></li>
+                <li><a href="">Hoa Cẩm Tú Cầu </a></li>
+                <li><a href="">Hoa Ly </a></li>
+              
             </ul>
         </div>
     </div>
@@ -122,12 +121,7 @@
                                 <img src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_7__2_102.png" alt="Product Image">
                             </a>
                         </div>
-                        <div class="product-review">
-                        <!-- Đánh giá sản phẩm -->
-                        <?php for ($i = 0; $i < 5; $i++) { ?>
-                            <span class="uk-icon" uk-icon="star"></span>
-                        <?php } ?>
-                        </div>
+                       
                         <!-- Tiêu đề sản phẩm -->
                             <div class="product-name">
                             <a href="#" title="Tên sản phẩm">
@@ -174,12 +168,11 @@
                             <div class="price-main black" style="text-decoration: line-through;">900.000 đ</div>
                         </div>
                         <!-- Trạng thái và số lượng đã bán -->
-                        <div class="product-sold color-2">
-                            <progress  value="30" max="100"></progress>
+                       <button>Thêm giỏ hàng </button>
+                    <button>Đặt mua  </button>
                             <div class="status ">
                                 <span>Còn hàng</span>
                                 <span>Đã bán: <span class="special">3</span></span>
-                            </div>
                         </div>
                     </div>
                 </div>
