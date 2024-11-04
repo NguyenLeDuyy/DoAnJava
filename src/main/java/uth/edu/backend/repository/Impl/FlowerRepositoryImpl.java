@@ -35,7 +35,7 @@ public class FlowerRepositoryImpl implements FlowersRepository {
                 flower.setSeason(rs.getString("season"));
                 Category category = new Category();
                 category.setId(rs.getInt("category_id"));
-                flower.setCategory(category);
+//                flower.setCategories(rs.getDate());
                 flower.setDescription(rs.getString("description"));
                 flower.setImageUrl(rs.getString("image_url"));
                 flowers.add(flower);

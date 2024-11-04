@@ -24,9 +24,7 @@ public class FlowerServiceImpl implements FlowerService {
             FlowerDTO flowerDTO = new FlowerDTO();
             flowerDTO.setName(item.getFlowerName());
             flowerDTO.setPrice(item.getPrice().intValue());
-            if (item.getCategory() != null) {
-                flowerDTO.setCategory(item.getCategory().getId());
-            }
+
             flowerDTO.setPriceToSeason(item.getPrice().toString() + item.getSeason());
             result.add(flowerDTO);
         }

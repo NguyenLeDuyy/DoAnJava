@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Nationalized;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -52,8 +53,9 @@ public class Flower {
     @Column(name = "LastModifiedDate")
     Instant lastModifiedDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CategoryId")
+    @ManyToOne
+    @JoinColumn(name = "CategoryId", nullable = false)
+    @JsonManagedReference
     Category category;
 
     @OneToMany(mappedBy = "flower")

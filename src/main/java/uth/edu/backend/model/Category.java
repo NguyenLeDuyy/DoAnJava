@@ -2,6 +2,7 @@ package uth.edu.backend.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -18,6 +19,7 @@ public class Category {
     private String categoryName;
 
     @OneToMany(mappedBy = "category")
+    @JsonBackReference
     private Set<Flower> flowers = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -43,5 +45,4 @@ public class Category {
     public void setFlowers(Set<Flower> flowers) {
         this.flowers = flowers;
     }
-
 }
