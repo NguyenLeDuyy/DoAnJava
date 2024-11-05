@@ -9,7 +9,7 @@ import uth.edu.backend.service.FlowerService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/flower")
+@RequestMapping("/flowers")
 public class FlowerController {
     @Autowired
     private FlowerService flowerService;
