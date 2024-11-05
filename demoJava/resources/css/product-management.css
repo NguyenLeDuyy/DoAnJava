@@ -1,0 +1,120 @@
+.product-management-container {
+    display: flex;
+    justify-content: space-between;
+    
+    padding: 10px;
+}
+.product-add {
+    width: 40%;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.product-add label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.product-add input[type="text"],
+.product-add input[type="number"],
+.product-add textarea,
+.product-add input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.product-add input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.product-add input[type="submit"]:hover {
+    background-color: black;
+}
+
+.search-container {
+    width: 60%;
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.search-container input[type="text"] {
+    width: 75%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-container button {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: black;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+
+.search-container, .product-add {
+    transition: width 0.5s;
+}
+.search-container {
+    width: 100%;
+}
+.product-add {
+    display: none;
+    width: 0;
+}
+.show-add-product .search-container {
+    width: 60%;
+}
+.show-add-product .product-add {
+    display: block;
+    width: 40%;
+}
