@@ -4,8 +4,10 @@
     
     padding: 10px;
 }
+
+/* form thêm sp*/
 .product-add {
-    width: 40%;
+    max-width: auto;
     margin-left: 50px;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -47,6 +49,7 @@
     background-color: black;
 }
 
+/*thanh tìm kiếm */
 .search-container {
     width: 60%;
     margin-left: 20px;
@@ -78,6 +81,8 @@
     background-color: black;
 }
 
+
+/*sp hiển thị*/
 .product-list {
     display: flex;
     flex-wrap: wrap;
@@ -99,14 +104,14 @@
 }
 
 
-
-
+/* ẩn hiện form thêm sp */
 .search-container, .product-add {
     transition: width 0.5s;
 }
 .search-container {
     width: 100%;
 }
+
 .product-add {
     display: none;
     width: 0;
@@ -117,4 +122,53 @@
 .show-add-product .product-add {
     display: block;
     width: 40%;
+}
+
+
+
+.product-edit {
+    width: 40%;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+
+/* form sửa sp */
+.product-edit label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.product-edit input[type="text"], .product-edit input[type="number"], .product-edit textarea,
+.product-add input[type="text"], .product-add input[type="number"], .product-add textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.product-edit input[type="file"], .product-add input[type="file"] {
+    margin-bottom: 10px;
+}
+
+.product-edit input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.product-edit input[type="submit"]:hover, .product-add input[type="submit"]:hover {
+    background-color: black;
 }
