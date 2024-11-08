@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm Ơn Bạn Đã Đặt Hàng</title>
+    <link href="../resources/css/style1.css" rel="stylesheet">
+   
+</head>
+
+<body>
+    <div class="thank-you-container">
+        <h2 class="thank-you-title">Cảm Ơn Bạn Đã Đặt Hàng!</h2>
+        <p class="thank-you-message">Chúng tôi đã nhận được đơn hàng của bạn và đang xử lý. Bạn sẽ nhận được thông tin giao hàng trong thời gian sớm nhất.</p>
+
+        <div class="order-summary">
+            <h3 class="order-summary-title">Tóm Tắt Đơn Hàng</h3>
+            <p><strong class="order-summary-item">Người nhận:</strong> Nguyễn Văn A</p>
+            <p><strong class="order-summary-item">Địa chỉ giao hàng:</strong> Số 123, Đường ABC, Quận 1, TP.HCM</p>
+            <p><strong class="order-summary-item">Ngày giao hàng dự kiến:</strong> 12/11/2024</p>
+        </div>
+
+        <div class="order-details">
+            <h3 class="order-details-title">Chi Tiết Sản Phẩm</h3>
+            <table class="order-details-table">
+                <thead>
+                    <tr>
+                        <th class="order-details-table-header">Sản phẩm</th>
+                        <th class="order-details-table-header">Số lượng</th>
+                        <th class="order-details-table-header">Giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hoa Hồng</td>
+                        <td>2</td>
+                        <td>200.000 VNĐ</td>
+                    </tr>
+                    <tr>
+                        <td>Hoa Tulip</td>
+                        <td>3</td>
+                        <td>300.000 VNĐ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="order-total">
+            <h3 class="order-total-title">Tổng Tiền</h3>
+            <p><strong>Tổng:</strong> 500.000 VNĐ</p>
+        </div>
+        <div class="payment-method">
+            <h3>Phương Thức Thanh Toán</h3>
+            <p><strong>Phương thức:</strong> Thanh toán bằng tiền mặt</p>
+        </div>
+
+        <div class="confirmation-buttons">
+            <button class="confirmation-button" onclick="window.location.href='http://localhost/DoAnJava-demo/DoAnJava-demo/demoJava/home.php'">Trở Về Trang Chủ</button>
+            <button class="confirmation-button" onclick="window.location.href='theodoi.php'">Theo Dõi Đơn Hàng</button>
+        </div>
+    </div>
+</body>
+</html>
