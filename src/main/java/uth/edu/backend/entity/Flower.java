@@ -1,4 +1,4 @@
-package uth.edu.backend.model;
+package uth.edu.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -52,16 +52,19 @@ public class Flower {
     @Column(name = "LastModifiedDate")
     Instant lastModifiedDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CategoryId")
+    @Column(name = "quantity", nullable = false)
+    Integer quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "CategoryId", nullable = false)
     Category category;
 
-    @OneToMany(mappedBy = "flower")
+    @OneToMany(mappedBy = "flower", fetch = FetchType.LAZY)
     Set<CartDetail> cartDetails = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "flower")
+    @OneToMany(mappedBy = "flower", fetch = FetchType.LAZY)
     Set<OrderDetail> orderDetails = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "flower")
+    @OneToMany(mappedBy = "flower", fetch = FetchType.LAZY)
     Set<UserDetail> userDetails = new LinkedHashSet<>();
 }
