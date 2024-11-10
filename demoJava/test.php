@@ -15,10 +15,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-    <?php require_once "components/user/header.html";?>
+    <?php require_once "components/admin/admin-header.html" ?>
     <main id="homepage">
-    <?php require_once "components/user/profile-user.html";?>
+    <?php require_once "components/admin/order-management.html";?>
     </main>
-    <?php require_once "components/user/footer.html" ?>
-</body>
+    </body>
 </html>
