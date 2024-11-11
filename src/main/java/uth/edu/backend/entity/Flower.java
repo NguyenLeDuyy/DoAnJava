@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Flower {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,7 +70,7 @@ public class Flower {
     @OneToMany(mappedBy = "flower", fetch = FetchType.LAZY)
     Set<UserDetail> userDetails = new LinkedHashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "SupplierId")
     Supplier supplier;
 

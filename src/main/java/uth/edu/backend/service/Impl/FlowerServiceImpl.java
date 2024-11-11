@@ -95,8 +95,13 @@ public class FlowerServiceImpl implements FlowerService {
         return flowersRepository.findByFlowerNameContainingAndSeason(name, season);
     }
 
-    @Override
-    public Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier) {
-        return flowersRepository.updateFlowerByIdContainingAndSupplier(id, supplier);
-    }
+//    @Override
+//    public void updateFlowerByIdAndSupplier(Integer id, Supplier supplier) {
+//        flowersRepository.updateFlowerByIdAndSupplier(id, supplier);
+//    }
+
+//    @Override
+//    public Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier) {
+//        return flowersRepository.updateFlowerByIdContainingAndSupplier(id, supplier);
+//    }
 }

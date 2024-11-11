@@ -36,5 +36,6 @@ public interface FlowerService {
     public List<Flower> findByFlowerNameContainingAndSeason(String name, String season);
 
     //cập nhật hoa theo ten va nha cung cap
-    Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier);
+//    public void updateFlowerByIdAndSupplier(Integer id, Supplier supplier);
+//    Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier);
 }

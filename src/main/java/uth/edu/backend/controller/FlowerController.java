@@ -14,6 +14,7 @@ import uth.edu.backend.entity.Category;
 import uth.edu.backend.entity.Flower;
 import uth.edu.backend.entity.Supplier;
 import uth.edu.backend.repository.FlowersRepository;
+import uth.edu.backend.repository.SupplierRepository;
 import uth.edu.backend.service.FlowerService;
 
 import java.io.File;
@@ -33,6 +34,9 @@ public class FlowerController {
 
     @Autowired
     private FlowersRepository flowersRepository;
+
+    @Autowired
+    private SupplierRepository supplierRepository;
 
     //test
     @GetMapping("/")
@@ -157,11 +161,24 @@ public class FlowerController {
     }
 
     @PutMapping("/{flowerId}/seller/{sellerId}")
-    public Flower updateFlowerSeller(@PathVariable("flowerId") Integer flowerId, @PathVariable("sellerId") Integer sellerId) {
-        Supplier supplier = ;
-        return flowerService.updateFlowerByIdContainingAndSupplier(flowerId, sellerId);
-    }
+    public ResponseEntity<?> assignSeller(@PathVariable Integer flowerId, @PathVariable Integer sellerId) {
+        try {
+            Flower flower = flowersRepository.findById(flowerId)
+                    .orElseThrow(() -> new RuntimeException("Flower not found"));
 
+            Supplier supplier = supplierRepository.findById(sellerId)
+                    .orElseThrow(() -> new RuntimeException("Seller not found"));
+
+            flower.setSupplier(supplier);
+            flowersRepository.save(flower);
+
+            return ResponseEntity.ok("Seller assigned successfully");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to assign seller: " + e.getMessage());
+        }
+    }
 
 
     @PostMapping("/addJPA")
@@ -201,8 +218,10 @@ public class FlowerController {
 
         Category category = new Category();
         category.setId(flowerRequestDTO.getCategoryId());
+
 //        category.setCategoryName(flowerRequestDTO.getCategoryName()); Không thể tạo mới category từ flower,
 //                                                                      phải dùng id của category sẵn có
+
         flower.setCategory(category);
 
         entityManager.persist(flower); // persist = insert

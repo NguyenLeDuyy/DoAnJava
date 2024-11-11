@@ -8,11 +8,14 @@ import uth.edu.backend.entity.Supplier;
 import java.util.List;
 
 @Repository
-public interface  FlowersRepository extends JpaRepository<Flower, Integer> {
-    void  deleteByIdIn(Integer[] ids);
-    List<Flower> findByFlowerNameContaining(String name);
-    List<Flower> findByFlowerNameContainingAndSeason(String name, String season);
-    Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier);
-//    Flower findByFlowerNameContaining(String s);
-}
+public interface FlowersRepository extends JpaRepository<Flower, Integer> {
+    void deleteByIdIn(Integer[] ids);
 
+    List<Flower> findByFlowerNameContaining(String name);
+
+    List<Flower> findByFlowerNameContainingAndSeason(String name, String season);
+
+//    void updateFlowerByIdAndSupplier(Integer id, Supplier supplier);
+    // Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier);
+    // Flower findByFlowerNameContaining(String s);
+}
