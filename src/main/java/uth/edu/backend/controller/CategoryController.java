@@ -8,25 +8,25 @@ import uth.edu.backend.service.CategoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
     // api create category
-    @PostMapping("/create")
+    @PostMapping
     public Category createCategory(@RequestBody Category category) {
         return categoryService.createCategory(category);
     }
 
     // api cập nhật category
-    @PutMapping("/update")
+    @PutMapping
     public Category updateCategory(@RequestParam("id") Integer id, @RequestBody Category category) {
         return categoryService.updateCategory(id, category);
     }
 
     // api xóa category
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public boolean deleteCategory(@PathVariable("id") Integer id) {
         return categoryService.deleteCategory(id);
     }

@@ -8,19 +8,19 @@ import uth.edu.backend.service.OrderDetailService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/orderdetail")
+@RequestMapping("/orderdetails")
 public class OrderDetailController {
     @Autowired
     private OrderDetailService orderDetailService;
 
     //api tạo order detail
-    @PostMapping("/create")
+    @PostMapping
     public OrderDetail createOrderDetail(@RequestBody OrderDetail orderDetail) {
         return orderDetailService.createOrderDetail(orderDetail);
     }
 
     //api cập nhật order detail
-    @PutMapping("/update")
+    @PutMapping
     public OrderDetail updateOrderDetail(@RequestParam("id") Integer id, @RequestBody OrderDetail orderDetail) {
         return orderDetailService.updateOrderDetail(id, orderDetail);
     }
