@@ -1,16 +1,22 @@
 package uth.edu.backend.dto.request;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.experimental.FieldDefaults;
+
+import java.io.File;
 
 @Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class FlowerRequestDTO {
-    private Integer id;
-    private String name;
-    private Integer price;
-    private Integer categoryId;
-    private String categoryName; // không thể tạo mới category từ flower
-    private String Season;
-    private String description;
-    private String imageUrl;
-    private Integer quantity;
+    Integer id;
+    String name;
+    Integer price;
+    Integer categoryId;
+    String categoryName; // không thể tạo mới category từ flower
+    String Season;
+    String description;
+    String imageUrl;
+    Integer quantity;
+    File image;
 }

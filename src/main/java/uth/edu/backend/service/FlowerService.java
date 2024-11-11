@@ -3,6 +3,7 @@ package uth.edu.backend.service;
 import org.springframework.stereotype.Service;
 import uth.edu.backend.dto.response.FlowerDTO;
 import uth.edu.backend.entity.Flower;
+import uth.edu.backend.entity.Supplier;
 
 import java.util.List;
 
@@ -33,4 +34,7 @@ public interface FlowerService {
 
     //tim kiem hoa theo ten va mua
     public List<Flower> findByFlowerNameContainingAndSeason(String name, String season);
+
+    //cập nhật hoa theo ten va nha cung cap
+    Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier);
 }

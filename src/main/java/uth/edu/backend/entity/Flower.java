@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @Builder
@@ -17,6 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Flower {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,4 +69,9 @@ public class Flower {
 
     @OneToMany(mappedBy = "flower", fetch = FetchType.LAZY)
     Set<UserDetail> userDetails = new LinkedHashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SupplierId")
+    Supplier supplier;
+
 }
