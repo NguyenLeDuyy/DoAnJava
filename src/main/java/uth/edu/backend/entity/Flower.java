@@ -1,5 +1,6 @@
 package uth.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -60,6 +61,7 @@ public class Flower {
 
     @ManyToOne
     @JoinColumn(name = "CategoryId", nullable = false)
+    @JsonManagedReference
     Category category;
 
     @OneToMany(mappedBy = "flower", fetch = FetchType.LAZY)
