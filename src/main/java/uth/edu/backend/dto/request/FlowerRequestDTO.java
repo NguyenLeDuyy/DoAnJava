@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 import java.io.File;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -18,5 +21,17 @@ public class FlowerRequestDTO {
     String description;
     String imageUrl;
     Integer quantity;
-    File image;
+    FileDTO image;
+    LocalDate createdDate;
+    LocalDate lastModifiedDate;
+
+    @Data
+    public static class FileDTO {
+        private String name;
+        private long lastModified;
+        private String lastModifiedDate;
+        private String webkitRelativePath;
+        private long size;
+
+    }
 }

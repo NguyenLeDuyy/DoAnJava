@@ -1,5 +1,6 @@
 package uth.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.Nationalized;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -48,17 +50,18 @@ public class Flower {
 
     @ColumnDefault("getdate()")
     @Column(name = "CreatedDate")
-    Instant createdDate;
+    LocalDate createdDate;
 
     @ColumnDefault("getdate()")
     @Column(name = "LastModifiedDate")
-    Instant lastModifiedDate;
+    LocalDate lastModifiedDate;
 
     @Column(name = "quantity", nullable = false)
     Integer quantity;
 
     @ManyToOne
     @JoinColumn(name = "CategoryId", nullable = false)
+    @JsonManagedReference
     Category category;
 
     @OneToMany(mappedBy = "flower", fetch = FetchType.LAZY)
