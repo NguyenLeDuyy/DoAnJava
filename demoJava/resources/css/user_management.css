@@ -1,0 +1,176 @@
+.user-management-container {
+    display: flex;
+    justify-content: space-between;
+    
+    padding: 10px;
+}
+
+/* form thêm sp*/
+.user-add {
+    max-width: auto;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.user-add label {
+    float: left;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.user-add input[type="text"],
+.user-add input[type="number"],
+.user-add textarea,
+.user-add input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user-add input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.user-add input[type="submit"]:hover {
+    background-color: black;
+}
+
+/*thanh tìm kiếm */
+.search-container {
+    width: 60%;
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.search-container input[type="text"] {
+    width: 75%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-container button {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: black;
+}
+
+
+/*sp hiển thị*/
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.user-item {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+.user-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ẩn hiện form thêm sp */
+.search-container, .user-add {
+    transition: width 0.5s;
+}
+.search-container {
+    width: 100%;
+}
+
+.user-add {
+    display: none;
+    width: 0;
+}
+.show-add-user .search-container {
+    width: 60%;
+}
+.show-add-user .user-add {
+    display: block;
+    width: 40%;
+}
+
+
+
+.user-edit {
+    width: 40%;
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+
+/* form sửa sp */
+.user-edit label {
+    float: left;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.user-edit input[type="text"], .user-edit input[type="number"], .user-edit textarea,
+.user-add input[type="text"], .user-add input[type="number"], .user-add textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-edit input[type="file"], .user-add input[type="file"] {
+    margin-bottom: 10px;
+}
+
+.user-edit input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.user-edit input[type="submit"]:hover, .user-add input[type="submit"]:hover {
+    background-color: black;
+}

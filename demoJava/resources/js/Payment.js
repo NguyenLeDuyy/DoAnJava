@@ -35,7 +35,7 @@ document.getElementById('payment-form').addEventListener('submit', function (eve
         if (paymentMethod === 'credit-card') {
             window.location.href = "https://mbbank.vn/thanhtoan"; // Đường dẫn trang thanh toán chuyển khoản
         } else {
-            window.location.href = "../../components/Thankyou.php"; // Đường dẫn trang xác nhận đơn hàng
+            window.location.href = "http://localhost/DoAnJava-demo/DoAnJava-demo/demoJava/components/Thankyou.php"; // Đường dẫn trang xác nhận đơn hàng
         }
     } else {
         alert("Vui lòng điền đầy đủ thông tin.");
