@@ -2,9 +2,9 @@ package uth.edu.backend.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uth.edu.backend.api.model.FlowerDTO;
+import uth.edu.backend.dto.response.FlowerDTO;
 import uth.edu.backend.repository.FlowersRepository;
-import uth.edu.backend.model.Flower;
+import uth.edu.backend.entity.Flower;
 import uth.edu.backend.service.FlowerService;
 
 import java.util.ArrayList;
@@ -18,17 +18,17 @@ public class FlowerServiceImpl implements FlowerService {
     @Override
     public List<FlowerDTO> findAllFlower(String name) {
         List<FlowerDTO> result = new ArrayList<>();
-        List<Flower> flowers = flowersRepository.findByFlowerNameContaining(name);
+//        List<Flower> flowers = flowersRepository.findAll();
+        List<Flower> flowers = flowersRepository.findAll();
 
         for (Flower item : flowers) {
             FlowerDTO flowerDTO = new FlowerDTO();
             flowerDTO.setName(item.getFlowerName());
             flowerDTO.setPrice(item.getPrice().intValue());
-
-            flowerDTO.setPriceToSeason(item.getPrice().toString() + item.getSeason());
+            flowerDTO.setCategory(item.getCategory().getId());
+            flowerDTO.setSeason(item.getSeason());
             result.add(flowerDTO);
         }
-
         return result;
     }
 
@@ -78,4 +78,29 @@ public class FlowerServiceImpl implements FlowerService {
     public Flower getOneFlower(Integer id) {
         return flowersRepository.getById(id);
     }
+
+    @Override
+    public void deleteByIdIn(Integer[] ids) {
+        flowersRepository.deleteByIdIn(ids);
+    }
+
+    @Override
+    public List<Flower> findByFlowerNameContaining(String s) {
+        return flowersRepository.findByFlowerNameContaining(s);
+    }
+
+    @Override
+    public List<Flower> findByFlowerNameContainingAndSeason(String name, String season) {
+        return flowersRepository.findByFlowerNameContainingAndSeason(name, season);
+    }
+
+//    @Override
+//    public void updateFlowerByIdAndSupplier(Integer id, Supplier supplier) {
+//        flowersRepository.updateFlowerByIdAndSupplier(id, supplier);
+//    }
+
+//    @Override
+//    public Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier) {
+//        return flowersRepository.updateFlowerByIdContainingAndSupplier(id, supplier);
+//    }
 }

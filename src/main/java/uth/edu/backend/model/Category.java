@@ -3,6 +3,7 @@ package uth.edu.backend.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import uth.edu.backend.entity.Flower;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
