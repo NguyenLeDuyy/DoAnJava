@@ -3,7 +3,7 @@ package uth.edu.backend.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.backend.repository.OrderRepository;
-import uth.edu.backend.model.Order;
+import uth.edu.backend.entity.Order;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package uth.edu.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uth.edu.backend.model.Category;
+import uth.edu.backend.entity.Category;
 import uth.edu.backend.service.CategoryService;
 
 import java.util.List;

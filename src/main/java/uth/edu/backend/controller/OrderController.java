@@ -2,7 +2,7 @@ package uth.edu.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uth.edu.backend.model.Order;
+import uth.edu.backend.entity.Order;
 import uth.edu.backend.service.OrderService;
 
 import java.util.List;
