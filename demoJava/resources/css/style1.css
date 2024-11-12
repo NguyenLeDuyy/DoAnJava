@@ -341,3 +341,60 @@ th, td {
                 color: #333;
                 font-size: 1.1em;
             }
+
+        /* danh sách sản phẩm  */
+
+        .sidebar {
+            width: 300px;
+            background-color: antiquewhite;
+            padding: 20px;
+            margin-right: 20px;
+            flex: 0 0 300px;
+            /* Giữ sidebar có chiều rộng cố định */
+        }
+
+        .list {
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Đổ bóng đậm hơn khi hover */
+            width:200px;
+            height: auto;
+        }
+
+        .list-image img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .list-specs p {
+            margin: 5px 0;          
+        }
+#loc {
+/* Các thuộc tính CSS cho nút */
+color: rgb(4, 4, 4);              /* Màu chữ */
+padding: 10px;        /* Khoảng cách nội dung */
+border-radius: 5px;        /* Bo góc */
+cursor: pointer;           /* Thay đổi con trỏ khi hover */
+margin: 10px 50px;
+}
+
+/* Hiệu ứng khi hover vào nút */
+#loc:hover {
+    background-color: #c83145; /* Thay đổi màu nền khi hover */
+}
+/* Style cho label liên kết với select */
+label[for="flower"] {
+    font-size: 16px;          /* Kích thước chữ */
+    color: #333;              /* Màu chữ */
+    font-weight: bold;        /* In đậm chữ */
+}
+
+label[for="flower"] a {
+    text-decoration: none;    /* Bỏ gạch chân liên kết */
+    color: #070907;           /* Màu chữ liên kết */
+}
+
+label[for="flower"] a:hover {
+    color: #4b630d;           /* Màu chữ khi hover */
+}
+#btngiohang, #btnmua{margin: 10px;}
