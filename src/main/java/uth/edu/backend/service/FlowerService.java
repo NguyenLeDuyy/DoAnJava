@@ -1,11 +1,13 @@
 package uth.edu.backend.service;
 
-import uth.edu.backend.api.model.FlowerDTO;
-import uth.edu.backend.dto.request.ApiResponse;
-import uth.edu.backend.model.Flower;
+import org.springframework.stereotype.Service;
+import uth.edu.backend.dto.response.FlowerDTO;
+import uth.edu.backend.entity.Flower;
+import uth.edu.backend.entity.Supplier;
 
 import java.util.List;
 
+@Service
 public interface FlowerService {
     List<FlowerDTO> findAllFlower(String name);
 
@@ -23,4 +25,17 @@ public interface FlowerService {
 
     //lay ra mot hoa
     public Flower getOneFlower(Integer id);
+
+    //delte by list id
+    public void deleteByIdIn(Integer[] ids);
+
+    //tim kiem hoa theo ten
+    public List<Flower> findByFlowerNameContaining(String s);
+
+    //tim kiem hoa theo ten va mua
+    public List<Flower> findByFlowerNameContainingAndSeason(String name, String season);
+
+    //cập nhật hoa theo ten va nha cung cap
+//    public void updateFlowerByIdAndSupplier(Integer id, Supplier supplier);
+//    Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier);
 }

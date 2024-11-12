@@ -1,13 +1,10 @@
 package uth.edu.backend.dto.response;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.ColumnDefault;
 import uth.edu.backend.entity.Cart;
-import uth.edu.backend.model.Order;
-import uth.edu.backend.model.UserDetail;
+import uth.edu.backend.entity.Order;
+import uth.edu.backend.entity.UserDetail;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

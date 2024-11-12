@@ -1,0 +1,451 @@
+.admin-container {
+    display: flex;
+    gap    : 10px;
+}
+
+/* Thanh Sidebar */
+
+.sidebar {
+    width           : 20%;
+    background-color: #2c3e50;
+    color           : white;
+    position        : fixed;
+    height          : 100%;
+    top             : 0;
+    left            : 0;
+    padding         : 20px;
+    box-sizing      : border-box;
+    transition      : all 0.3s ease;
+}
+
+.btn-show-hide {
+    cursor  : pointer;
+    position: fixed;
+}
+
+.icon-bar {
+    font-size : 20px;
+    position  : absolute;
+    z-index   : 1;
+    color     : var(--color-text);
+    transition: all 0.3s ease;
+    display   : block;
+}
+
+.sidebar h2 {
+    text-align    : center;
+    margin        : 0;
+    padding-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding        : 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color          : white;
+    text-decoration: none;
+    display        : block;
+    padding        : 10px;
+    border-radius  : 5px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #34495e;
+}
+
+/* Nội dung chính */
+.main-content {
+    margin-left     : 20%;
+    padding         : 20px;
+    box-sizing      : border-box;
+    width           : 80%;
+    background-color: #ecf0f1;
+    min-height      : 100vh;
+    display         : flex;
+    flex-direction  : column;
+    transition      : all 0.3s ease;
+}
+
+/* Nội dung chính */
+.content {
+    background-color: #fff;
+    padding         : 20px;
+    border-radius   : 5px;
+    box-shadow      : 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom   : 20px;
+}
+
+/* Phần thông tin tổng quan */
+.overview-section {
+    margin-bottom: 30px;
+}
+
+.overview-section h2 {
+    font-size    : 1.8em;
+    margin-bottom: 20px;
+    text-align   : center;
+}
+
+.overview-cards {
+    display        : flex;
+    justify-content: space-between;
+    flex-wrap      : wrap;
+}
+
+.overview-card {
+    background-color: #f9f9f9;
+    padding         : 20px;
+    border-radius   : 5px;
+    box-shadow      : 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align      : center;
+    flex            : 1;
+    margin          : 10px;
+}
+
+.overview-card h3 {
+    margin   : 0 0 10px;
+    font-size: 1.2em;
+}
+
+.overview-card p {
+    font-size  : 1.5em;
+    font-weight: bold;
+    margin     : 0;
+}
+
+/* Form */
+form {
+    max-width: 600px;
+    margin   : 0 auto;
+}
+
+label {
+    display: block;
+    margin : 10px 0 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width        : 100%;
+    padding      : 10px;
+    border-radius: 5px;
+    border       : 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #3498db;
+    color           : white;
+    padding         : 10px 20px;
+    border          : none;
+    border-radius   : 5px;
+    cursor          : pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Đăng Nhập */
+.login-container {
+    max-width    : 400px;
+    margin       : 100px auto;
+    padding      : 20px;
+    border       : 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+}
+
+/* Định dạng cho fieldset */
+fieldset {
+    border          : 1px solid #ccc;
+    border-radius   : 5px;
+    padding         : 20px;
+    margin-bottom   : 20px;
+    background-color: #f9f9f9;
+}
+
+/* Định dạng cho legend */
+fieldset legend {
+    font-size    : 1.2em;
+    font-weight  : bold;
+    color        : #3498db;
+    padding      : 0 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+/* Định dạng cho các label bên trong fieldset */
+fieldset label {
+    display    : block;
+    margin     : 10px 0 5px;
+    font-weight: bold;
+}
+
+/* Định dạng cho các input bên trong fieldset */
+fieldset input[type="text"],
+fieldset input[type="email"],
+fieldset input[type="password"],
+fieldset select,
+fieldset textarea {
+    width        : 100%;
+    padding      : 10px;
+    border-radius: 5px;
+    border       : 1px solid #ccc;
+    margin-bottom: 15px;
+}
+
+/* Định dạng cho các button bên trong fieldset */
+fieldset button {
+    background-color: #3498db;
+    color           : white;
+    padding         : 10px 20px;
+    border          : none;
+    border-radius   : 5px;
+    cursor          : pointer;
+}
+
+fieldset button:hover {
+    background-color: #2980b9;
+}
+
+/* Bảng đơn hàng */
+
+.orders-table {
+    width          : 100%;
+    border-collapse: collapse;
+}
+
+.orders-table__header {
+    background-color: #3498db;
+    color           : white;
+    text-align      : left;
+}
+
+.orders-table__header th {
+    padding      : 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.orders-table__row {
+    border-bottom: 1px solid #ddd;
+}
+
+.orders-table__cell {
+    padding: 10px;
+}
+
+.orders-table__form {
+
+    margin-bottom: 10px;
+}
+
+.orders-table__select {
+    padding      : 5px;
+    border-radius: 5px;
+    border       : 1px solid #ccc;
+    margin-bottom: 5px;
+    width        : auto;
+}
+
+.orders-table__button {
+    background-color: #3498db;
+    color           : white;
+    padding         : 8px 15px;
+    border          : none;
+    border-radius   : 5px;
+    cursor          : pointer;
+}
+
+.orders-table__button:hover {
+    background-color: #2980b9;
+}
+
+/* Bảng sản phẩm */
+
+.products-table {
+    width          : 100%;
+    border-collapse: collapse;
+    text-align     : center;
+}
+
+.products-table__header {
+    background-color: #3498db;
+    color           : white;
+    text-align      : left;
+}
+
+.products-table__header th {
+    padding      : 10px;
+    border-bottom: 2px solid #ddd;
+    text-align   : center;
+}
+
+.products-table__row {
+    border-bottom: 1px solid #ddd;
+}
+
+.products-table__row td:nth-child(2) {
+    width: 15%;
+}
+
+.products-table__cell {
+    padding: 10px;
+}
+
+.products-table__cell--actions {
+    display        : flex;
+    gap            : 10px;
+    justify-content: center;
+    /* Căn giữa theo chiều ngang */
+    align-items    : center;
+    /* Căn giữa theo chiều dọc */
+    height         : 20vh;
+}
+
+.products-table__button {
+    background-color: #3498db;
+    color           : white;
+    padding         : 8px 15px;
+    text-decoration : none;
+    border-radius   : 5px;
+    cursor          : pointer;
+    display         : inline-flex;
+    /* Đảm bảo các thẻ <a> có cùng chiều cao */
+    align-items     : center;
+    /* Căn giữa theo chiều dọc */
+}
+
+.products-table__button:hover {
+    background-color: #2980b9;
+}
+
+.products-table__button--delete {
+    background-color: #e74c3c;
+}
+
+.products-table__button--delete:hover {
+    background-color: #c0392b;
+}
+
+/* Bảng người dùng */
+
+.users-table {
+    width          : 100%;
+    border-collapse: collapse;
+}
+
+.users-table__header {
+    background-color: #3498db;
+    color           : white;
+    text-align      : left;
+}
+
+.users-table__header th {
+    padding      : 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.users-table__row {
+    border-bottom: 1px solid #ddd;
+}
+
+.users-table__cell {
+    padding: 10px;
+}
+
+.users-table__cell--actions {
+    display: flex;
+    gap    : 10px;
+}
+
+.users-table__button {
+    background-color: #3498db;
+    color           : white;
+    padding         : 8px 15px;
+    text-decoration : none;
+    border-radius   : 5px;
+    cursor          : pointer;
+    display         : inline-block;
+}
+
+.users-table__button:hover {
+    background-color: #2980b9;
+}
+
+.users-table__button--delete {
+    background-color: #e74c3c;
+}
+
+.users-table__button--delete:hover {
+    background-color: #c0392b;
+}
+
+.users-table__button--showHide {
+    color           : var(--color-text);
+    background-color: #ffc519;
+    width           : 12%;
+    text-align      : center;
+}
+
+.users-table__button--showHide:hover {
+    background-color: #9f790a;
+}
+
+/* Thông tin đăng xuất */
+.logout-info {
+    margin-bottom: 20px;
+    font-size    : 1.1em;
+    text-align   : left;
+}
+
+.logout-info p {
+    margin: 10px 0;
+}
+
+/* Các hành động sau đăng xuất */
+.logout-actions p {
+    margin: 15px 0;
+}
+
+.btn {
+    display         : inline-block;
+    padding         : 10px 20px;
+    font-size       : 1em;
+    color           : #fff;
+    background-color: #3498db;
+    border          : none;
+    border-radius   : 5px;
+    text-decoration : none;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+/* Nút phụ */
+.btn-secondary {
+    background-color: #95a5a6;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+.updateForm {
+    width         : 100%;
+    margin        : 0;
+    display       : flex;
+    flex-direction: column;
+
+}

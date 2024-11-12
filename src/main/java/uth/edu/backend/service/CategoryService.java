@@ -3,7 +3,7 @@ package uth.edu.backend.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.backend.repository.CategoryRepository;
-import uth.edu.backend.model.Category;
+import uth.edu.backend.entity.Category;
 
 import java.util.List;
 

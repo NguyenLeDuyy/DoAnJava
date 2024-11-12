@@ -2,11 +2,10 @@ package uth.edu.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import uth.edu.backend.model.CartDetail;
-import uth.edu.backend.model.Order;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -15,6 +14,7 @@ import java.util.Set;
 @Table(name = "Cart", indexes = {
         @Index(name = "IX_Cart_UserId", columnList = "UserId")
 })
+@Data
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,50 +31,9 @@ public class Cart {
     @Column(name = "Status", length = 50)
     private String status = "Chua thanh toan";
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
     private Set<CartDetail> cartDetails = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
     private Set<Order> orders = new LinkedHashSet<>();
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Set<CartDetail> getCartDetails() {
-        return cartDetails;
-    }
-
-    public void setCartDetails(Set<CartDetail> cartDetails) {
-        this.cartDetails = cartDetails;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
 }
