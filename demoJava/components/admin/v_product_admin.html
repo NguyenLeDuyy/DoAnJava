@@ -171,7 +171,7 @@
 
                         <div class="mb-3">
                             <label for="category" class="form-label">Loại Hoa:</label>
-                            <select class="form-select" id="category" name="category" required>
+                            <select class="form-select" id="category" name="categoryId" required>
                                 <option value="1">Hoa tiệc cưới</option>
                                 <option value="2">Hoa hội nghị, hội thảo</option>
                                 <option value="3">Hoa sự kiện</option>
@@ -205,7 +205,17 @@
 
                         <div class="mb-3">
                             <label for="updated_date" class="form-label">Ngày Cập Nhật:</label>
-                            <input type="date" class="form-control" id="updated_date" name="updated_date" required>
+                            <input type="date" class="form-control" id="updated_date" name="lastModifiedDate" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="supplier" class="form-label">Nhà cung cấp:</label>
+                            <select class="form-select" id="supplier" name="supplierId">
+                                <option value="">-- Chọn nhà cung cấp --</option>
+                                <option value="1">Nhà cung cấp A</option>
+                                <option value="2">Nhà cung cấp B</option>
+                                <option value="3">Nhà cung cấp C</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -237,7 +247,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form id="addFlowerForm" class="form-horizontal" role="form" enctype="multipart/form-data">
+                <form id="updateFlowerForm" class="form-horizontal" role="form" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="name" class="form-label">Tên Hoa:</label>
@@ -251,7 +261,7 @@
 
                         <div class="mb-3">
                             <label for="category" class="form-label">Loại Hoa:</label>
-                            <select class="form-select" id="category" name="category" required>
+                            <select class="form-select" id="category" name="categoryId" required>
                                 <option value="1">Hoa tiệc cưới</option>
                                 <option value="2">Hoa hội nghị, hội thảo</option>
                                 <option value="3">Hoa sự kiện</option>
@@ -285,7 +295,17 @@
 
                         <div class="mb-3">
                             <label for="updated_date" class="form-label">Ngày Cập Nhật:</label>
-                            <input type="date" class="form-control" id="updated_date" name="updated_date" required>
+                            <input type="date" class="form-control" id="updated_date" name="lastModifiedDate" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="supplier" class="form-label">Nhà cung cấp:</label>
+                            <select class="form-select" id="supplier" name="supplierId">
+                                <option value="">-- Chọn nhà cung cấp --</option>
+                                <option value="1">Nhà cung cấp A</option>
+                                <option value="2">Nhà cung cấp B</option>
+                                <option value="3">Nhà cung cấp C</option>
+                            </select>
                         </div>
 
                         <div class="mb-3">
@@ -293,16 +313,18 @@
                             <input type="file" class="form-control" id="image" name="image">
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="btnUpdateFlower">Tạo mới</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </div>
-                </form>
+
             </div>
-
-
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btnUpdateFlower">Cập nhật</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+            </form>
         </div>
+
+
     </div>
+</div>
 </div>
 
 <!-- Change Seller Modal -->
@@ -314,40 +336,38 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <table class="table table-striped">
+                <table class="table table-striped" id="supplierList">
                     <thead>
                         <tr>
+                            <th>Chọn</th>
                             <th>ID</th>
                             <th>Tên</th>
                             <th>Email</th>
-                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+                            <td>
+                                <input class="form-check-input" type="radio" name="sellerRadio" id="radio_1" value="1">
+                            </td>
                             <td>1</td>
                             <td>Người bán A</td>
                             <td>sellera@example.com</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm" onclick="assignSeller(1, 1)">
-                                    Chọn
-                                </button>
-                            </td>
                         </tr>
                         <tr>
+                            <td>
+                                <input class="form-check-input" type="radio" name="sellerRadio" id="radio_2" value="2">
+                            </td>
                             <td>2</td>
                             <td>Người bán B</td>
                             <td>sellerb@example.com</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm" onclick="assignSeller(2, 1)">
-                                    Chọn
-                                </button>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
+                <input type="hidden" name="flowerId" id="flowerId" value="1">
             </div>
             <div class="modal-footer">
+                <button class="btn btn-primary" id="btnChangeSupplier">Xác nhận</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
             </div>
         </div>
@@ -375,31 +395,40 @@
 
     function updateFlower(flowerId) {
         $('#updateFlowerModal').modal('show');
-
-        // get data from api
-        $.ajax({
-            type: "GET",
-            url: 'http://localhost:8080/identity/flowers/' + flowerId,
-            contentType: 'application/json',
-            dataType: 'json',
-            success: function (response) {
-                console.log("success");
-                console.log(response);
-                $('#name').val(response.name);
-                $('#description').val(response.description);
-                $('#category').val(response.category);
-                $('#price').val(response.price);
-                $('#season').val(response.season);
-                $('#quantity').val(response.quantity);
-                $('#created_date').val(response.created_date);
-                $('#updated_date').val(response.updated_date);
-            },
-            error: function (response) {
-                console.log("failed");
-                console.log(response);
-            }
-        });
     }
+
+    $('#btnChangeSupplier').click(function (e) {
+        // get data from form
+        e.preventDefault();
+        var data = {};
+        data['flowerId'] = $('#flowerId').val();
+        var suppliers = $('#supplierList').find('tbody input[name="sellerRadio"]:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        data['suppliers'] = suppliers;
+
+        console.log("OK");
+        console.log(data);
+
+        //call api
+        // $.ajax({
+        //     type: "PUT",
+        //     url: 'http://localhost:8080/identity/flowers/updateJPA',
+        //     data: JSON.stringify(data),
+        //     contentType: 'application/json',
+        //     dataType: 'json',
+        //     success: function (response) {
+        //         console.log("success");
+        //         console.log(response);
+        //         $('#updateFlowerModal').modal('hide');
+        //     },
+        //     error: function (response) {
+        //         console.log("failed");
+        //         console.log(response);
+        //     }
+        // });
+    });
 
     function assignNewSeller(flowerId) {
         $('#changeSellerModal').modal('show');
@@ -445,7 +474,7 @@
     //     })
     // });
 
-    //Xử lý form khi có ảnh
+    //Xử lý tạo flower mới form khi có ảnh
     $('#btnAddNewFlower').click(function (e) {
         e.preventDefault();
         // get data from form
@@ -455,6 +484,18 @@
         formData.forEach(function (value, key) {
             data[key] = value;
         });
+
+        // Convert string values to numbers where necessary
+        if (data.price) {
+            data.price = parseFloat(data.price);
+        }
+        if (data.quantity) {
+            data.quantity = parseInt(data.quantity);
+        }
+        if (data.categoryId) {
+            data.categoryId = parseInt(data.categoryId);
+        }
+
 
         console.log(data);
 
@@ -468,6 +509,7 @@
             success: function (response) {
                 console.log("success");
                 console.log(response);
+                console.log(data)
                 data['imageUrl'] = response.imageUrl;
                 $('#addNewFlowerModal').modal('hide');
                 // location.reload(); // Refresh page after success
@@ -475,6 +517,7 @@
             error: function (response) {
                 console.log("failed");
                 console.log(response);
+                console.log(data)
                 alert('Failed to add flower. Please try again.');
             }
         });

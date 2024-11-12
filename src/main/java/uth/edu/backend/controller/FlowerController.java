@@ -106,37 +106,24 @@ public class FlowerController {
     @Value("${file.upload.dir}")
     private String flower_directory;
 
-    @PutMapping("/updateJPA/")
+    @PutMapping("/updateJPA")
     @Transactional
     public ResponseEntity<?> updateFlowerJPA(@RequestBody FlowerRequestDTO flowerRequestDTO) {
         try {
-            // Find flower or throw exception if not found
             Flower flower = flowersRepository.findById(flowerRequestDTO.getId())
                     .orElseThrow(() -> new RuntimeException("Flower not found"));
 
-            // Update basic info
             flower.setFlowerName(flowerRequestDTO.getName());
             flower.setPrice(BigDecimal.valueOf(flowerRequestDTO.getPrice()));
             flower.setDescription(flowerRequestDTO.getDescription());
             flower.setSeason(flowerRequestDTO.getSeason());
             flower.setQuantity(flowerRequestDTO.getQuantity());
+            flower.setCreatedDate(flowerRequestDTO.getCreatedDate());
+            flower.setLastModifiedDate(flowerRequestDTO.getLastModifiedDate());
 
-            // Handle file upload if file exists
             if (flowerRequestDTO.getImage() != null) {
                 try {
-                    File directory = new File(flower_directory);
-                    if (!directory.exists()) {
-                        directory.mkdirs();
-                    }
-
-                    String filename = flowerRequestDTO.getImage().getName();
-                    String filePath = flower_directory + File.separator + filename;
-                    Path path = Paths.get(filePath);
-
-                    Files.copy(Files.newInputStream(flowerRequestDTO.getImage().toPath()),
-                            path, StandardCopyOption.REPLACE_EXISTING);
-
-                    flower.setImageUrl(filePath);
+                    processFile(flowerRequestDTO, flower);
                 } catch (IOException e) {
                     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                             .body("Failed to upload image: " + e.getMessage());
@@ -145,12 +132,10 @@ public class FlowerController {
                 flower.setImageUrl(flowerRequestDTO.getImageUrl());
             }
 
-            // Update category
             Category category = new Category();
             category.setId(flowerRequestDTO.getCategoryId());
             flower.setCategory(category);
 
-            // Save and return response
             flowersRepository.save(flower);
             return ResponseEntity.ok("Flower updated successfully");
 
@@ -158,6 +143,51 @@ public class FlowerController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Failed to update flower: " + e.getMessage());
         }
+    }
+
+    @PostMapping("/addJPA")
+    @Transactional
+    public void addFlowerJPA(@RequestBody FlowerRequestDTO flowerRequestDTO) {
+        Flower flower = new Flower();
+        flower.setFlowerName(flowerRequestDTO.getName());
+        flower.setPrice(BigDecimal.valueOf(flowerRequestDTO.getPrice()));
+        flower.setDescription(flowerRequestDTO.getDescription());
+        flower.setSeason(flowerRequestDTO.getSeason());
+
+        if (flowerRequestDTO.getImage() != null) {
+            try {
+                processFile(flowerRequestDTO, flower);
+            } catch (IOException e) {
+                System.out.println("Failed to upload image: " + e.getMessage());
+            }
+        } else {
+            flower.setImageUrl(flowerRequestDTO.getImageUrl());
+        }
+
+        flower.setQuantity(flowerRequestDTO.getQuantity());
+
+        Category category = new Category();
+        category.setId(flowerRequestDTO.getCategoryId());
+        flower.setCategory(category);
+
+        entityManager.persist(flower);
+        System.out.println("Okay");
+    }
+
+    private void processFile(@RequestBody FlowerRequestDTO flowerRequestDTO, Flower flower) throws IOException {
+        File directory = new File(flower_directory);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+//        String filename = flowerRequestDTO.getImage().getName();
+//        String filePath = flower_directory + File.separator + filename;
+//        Path path = Paths.get(filePath);
+//
+//        Files.copy(Files.newInputStream(Paths.get(flowerRequestDTO.getImage().getName())),
+//                path, StandardCopyOption.REPLACE_EXISTING);
+
+        flower.setImageUrl(flowerRequestDTO.getImage().getName());
     }
 
     @PutMapping("/{flowerId}/seller/{sellerId}")
@@ -181,51 +211,4 @@ public class FlowerController {
     }
 
 
-    @PostMapping("/addJPA")
-    @Transactional
-    public void addFlowerJPA(@RequestBody FlowerRequestDTO flowerRequestDTO){
-        Flower flower = new Flower();
-        flower.setFlowerName(flowerRequestDTO.getName());
-        flower.setPrice(BigDecimal.valueOf(flowerRequestDTO.getPrice()));
-        flower.setDescription(flowerRequestDTO.getDescription());
-        flower.setSeason(flowerRequestDTO.getSeason());
-
-        // Handle file upload if file exists
-        if (flowerRequestDTO.getImage() != null) {
-            try {
-                File directory = new File(flower_directory);
-                if (!directory.exists()) {
-                    directory.mkdirs();
-                }
-
-                String filename = flowerRequestDTO.getImage().getName();
-                String filePath = flower_directory + File.separator + filename;
-                Path path = Paths.get(filePath);
-
-                Files.copy(Files.newInputStream(flowerRequestDTO.getImage().toPath()),
-                        path, StandardCopyOption.REPLACE_EXISTING);
-
-                flower.setImageUrl(filePath);
-            } catch (IOException e) {
-                System.out.println("Failed to upload image: " + e.getMessage());
-            }
-        } else {
-            flower.setImageUrl(flowerRequestDTO.getImageUrl());
-        }
-
-
-        flower.setQuantity(flowerRequestDTO.getQuantity());
-
-        Category category = new Category();
-        category.setId(flowerRequestDTO.getCategoryId());
-
-//        category.setCategoryName(flowerRequestDTO.getCategoryName()); Không thể tạo mới category từ flower,
-//                                                                      phải dùng id của category sẵn có
-
-        flower.setCategory(category);
-
-        entityManager.persist(flower); // persist = insert
-
-        System.out.println("Okay");
-    }
 }
