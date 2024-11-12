@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="resources/css/order-management.css" />
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên Khách Hàng</th>
+                <th>Sản Phẩm</th>
+                <th>Tổng giá trị</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody id="orderTable">
+            <!-- Các đơn hàng sẽ được thêm vào đây -->
+        </tbody>
+    </table>
+
+<script>
+/*data tạm*/
+    let orders = [
+    { id: 1, customer: 'Nguyễn Văn A', products: [{ name: 'Sản phẩm 1', quantity: 2, price: 100000 }, { name: 'Sản phẩm 2', quantity: 1, price: 50000 }], status: 'Đã giao' },
+    { id: 2, customer: 'Trần Thị B', products: [{ name: 'Sản phẩm 3', quantity: 1, price: 200000 }], status: 'Đang giao' }
+];
+
+/* gắn data vô table các thứ */
+    function renderOrders() {
+        const orderTable = document.getElementById('orderTable');
+        orderTable.innerHTML = '';
+        orders.forEach(order => {
+        
+        /* không thể trực tiếp gọi thanh phần product vào table nên cần bước này */
+            const productDetails = order.products.map(product => 
+            `${product.name} (SL: ${product.quantity}, Giá: ${product.price} VND)`).join('<br>');
+        /* cộng tổng */
+            const totalPrice = order.products.reduce((sum, product) => sum + (product.quantity * product.price), 0);
+        
+        /*thả mấy thứ đã chuẩn bị ở trên vô table */
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${order.id}</td>
+                <td>${order.customer}</td>
+                <td>${productDetails}</td>
+                <td>${totalPrice}</td>
+                <td>${order.status}</td>
+        `   ;
+        orderTable.appendChild(row);
+        });
+    }
+    renderOrders();
+</script>

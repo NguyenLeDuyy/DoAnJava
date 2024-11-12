@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang sản phẩm</title>
+    <link href="../resources/css/style1.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>Danh mục Hoa </h2>
+
+            <!-- Lọc theo Brand -->
+            <h3>Theo Brand</h3>
+            <label for="flower"><a href="#1" >Hoa Cưới</a></label>
+            <select name="flower" id="flower">
+            <option value="Hoahong">Chọn Loại Hoa </option>
+              <option value="Hoahong">Hoa Hồng</option>
+              <option value="hoalan">Hoa Lan</option>
+              <option value="hoababy">Hoa babay</option>
+              <option value="hoacamtucau">Hoa Cẩm tú cầu</option>
+              <option value="hoacamtucau">Hoa ly </option>
+            </select>
+            <br>
+            
+            <label for="flower"><a href="#2" >Hoa Sự kiện </a></label>
+            <select name="flower" id="flower">
+            <option value="Hoahong">Chọn Loại Hoa </option>
+              <option value="Hoahong">Hoa Hướng dương</option>
+              <option value="hoalan">Hoa đồng tiền </option>
+              <option value="hoababy">Hoa cúc</option>
+            </select>
+            <br>
+
+            <label for="flower"><a href="#3" >Hoa Hội Nghị, hội Thảo </a></label>
+            <select name="flower" id="flower">
+                <option value="Hoahong">Chọn Loại Hoa </option>
+                <option value="Hoahong">Hoa Lan</option>
+            </select>
+            <button id="loc" name="loc"> Lọc  </button>
+        </div>
+        <!-- Phần hiển thị sản phẩm -->
+        <div class="list">
+            <!-- Hình ảnh sản phẩm -->
+            <div class="list-image">
+                <a href="ProductDetails.php?id=1">
+                    <img src="https://anhcuoiviet.vn/wp-content/uploads/2022/12/hinh-nen-hoa-dao-chat-luong-cao-1.jpg"
+                        alt="Product 1">
+                </a>
+            </div>          
+            <!-- Thông tin  -->
+            <div class="list-specs">
+                <a href="#" title="Product 1">
+                    <h3>tên hoa </h3>
+                </a>
+                <p><strong>Giá 900000</strong></p>
+                <input type="number" id="soluong" name="soluong" value="1" min="1" max="100">
+            </div>
+            <div class="action">
+                <button id="btngiohang" name="btnmua"> Giỏ Hàng </button>
+                <button id="btnmua" name="btnmua"> Đặt mua </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
