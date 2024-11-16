@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="admin/layouts/head :: head"></head>
+<head th:replace="admin/fragments/head :: head"></head>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
 
-        <div th:replace="admin/layouts/header :: header"></div>
+        <div th:replace="admin/fragments/header :: header"></div>
 
         <!-- =============================================== -->
 
         <!-- Left side column. contains the sidebar -->
-        <div th:replace="admin/layouts/sidebar :: sidebar"></div>
+        <div th:replace="admin/fragments/sidebar :: sidebar"></div>
         <!-- =============================================== -->
 
         <!-- Content Wrapper. Contains page content -->
@@ -187,7 +187,7 @@
         <!-- /.content -->
     <!-- /.content-wrapper -->
 
-        <div th:replace="admin/layouts/footer :: footer"></div>
+        <div th:replace="admin/fragments/footer :: footer"></div>
     </div>
 
 
@@ -432,7 +432,7 @@
 
         <!-- jQuery 3 -->
 
-        <div th:replace="admin/layouts/script :: script"></div>
+        <div th:replace="admin/fragments/script :: script"></div>
 
 
         <script>

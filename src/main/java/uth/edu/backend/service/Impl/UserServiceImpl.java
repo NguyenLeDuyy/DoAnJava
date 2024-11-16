@@ -14,11 +14,12 @@ import uth.edu.backend.customexception.ErrorCode;
 import uth.edu.backend.mapper.UserMapper;
 import uth.edu.backend.repository.CartRepository;
 import uth.edu.backend.repository.UserRepository;
+import uth.edu.backend.service.UserService;
 
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
@@ -85,5 +86,10 @@ public class UserService {
 
         userRepository.save(user);
 
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

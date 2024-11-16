@@ -2,7 +2,8 @@ package uth.edu.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Data;
+        import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -10,11 +11,10 @@ import org.hibernate.annotations.OnDeleteAction;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "Cart", indexes = {
-        @Index(name = "IX_Cart_UserId", columnList = "UserId")
-})
 @Data
+@Entity
+@Table(name = "Cart")
+@EqualsAndHashCode(exclude = {"user", "cartDetails", "orders"})
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

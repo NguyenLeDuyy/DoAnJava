@@ -1,18 +1,17 @@
 package uth.edu.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "Users", uniqueConstraints = {
-        @UniqueConstraint(name = "UQ__Users__536C85E438E35360", columnNames = {"Username"})
-})
 @Data
+@Entity
+@Table(name = "Users")
+@EqualsAndHashCode(exclude = {"cart", "orders", "userDetails", "userRoles"})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,19 +30,22 @@ public class User {
     @Column(name = "PhoneNumber", length = 15)
     private String phoneNumber;
 
-    @ColumnDefault("0")
+    @Column(name = "enabled")
+    boolean enabled = true;
+
+    @ColumnDefault("2")
     @Column(name = "Role")
-    private Integer role = 0; // Set default value to 0
+    private Integer role = 2; // Set default value to 0
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    @JsonManagedReference
     private Cart cart;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Order> orders = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<UserDetail> userDetails = new LinkedHashSet<>();
+    Set<UserDetail> userDetails = new LinkedHashSet<>();
 
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    Set<UserRole> userRoles = new LinkedHashSet<>();
 }

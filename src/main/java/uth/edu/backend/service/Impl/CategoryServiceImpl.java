@@ -4,11 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.backend.repository.CategoryRepository;
 import uth.edu.backend.entity.Category;
+import uth.edu.backend.service.CategoryService;
 
 import java.util.List;
 
 @Service
-public class CategoryService {
+public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
@@ -34,7 +35,8 @@ public class CategoryService {
     }
 
     // xóa category
-    public boolean deleteCategory(Integer id) {
+    @Override
+    public Boolean deleteCategory(Integer id) {
         if (id >= 1) {
             Category category = categoryRepository.getById(id);
             if (category != null) {
@@ -46,6 +48,7 @@ public class CategoryService {
     }
 
     // lấy danh sách các category
+    @Override
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
@@ -54,4 +57,33 @@ public class CategoryService {
     public Category getOneCategory(Integer id) {
         return categoryRepository.getById(id);
     }
+
+    @Override
+    public Boolean create(Category category) {
+        try {
+            this.categoryRepository.save(category);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
+   @Override
+    public Category findById(Integer id) {
+        return categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category not found"));
+    }
+
+    @Override
+    public Boolean update(Category category) {
+        try {
+            this.categoryRepository.save(category);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }
