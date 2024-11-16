@@ -1,0 +1,116 @@
+<header class="main-header" th:fragment="header">
+    <!-- Logo -->
+    <a th:href="@{/admin}" class="navbar-brand">
+        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-lg">BACKHOA_APTECH</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Sidebar toggle button-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <!-- Messages: style can be found in dropdown.less-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-envelope-o"></i>
+                        <span class="badge bg-success">4</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="messagesDropdown">
+                        <li><a class="dropdown-item" href="#">You have 4 messages</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <div class="d-flex align-items-center">
+                                    <img th:src="@{/assets/images/user2-160x160.jpg}" class="rounded-circle me-2"
+                                        alt="User Image" width="40" height="40">
+                                    <div>
+                                        <h6 class="mb-0">Support Team</h6>
+                                        <small class="text-muted"><i class="fa fa-clock-o"></i> 5 mins</small>
+                                        <p class="mb-0">Why not buy a new awesome theme?</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item text-center" href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                <!-- Notifications: style can be found in dropdown.less -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-bell-o"></i>
+                        <span class="badge bg-warning">10</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="notificationsDropdown">
+                        <li><a class="dropdown-item" href="#">You have 10 notifications</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item text-center" href="#">View all</a></li>
+                    </ul>
+                </li>
+                <!-- Tasks: style can be found in dropdown.less -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="tasksDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-flag-o"></i>
+                        <span class="badge bg-danger">9</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="tasksDropdown">
+                        <li><a class="dropdown-item" href="#">You have 9 tasks</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <h6 class="mb-0">Design some buttons</h6>
+                                <small class="text-muted">20%</small>
+                                <div class="progress">
+                                    <div class="progress-bar bg-aqua" role="progressbar" style="width: 20%;"
+                                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">20% Complete
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li><a class="dropdown-item text-center" href="#">View all tasks</a></li>
+                    </ul>
+                </li>
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img th:src="@{/assets/images/user2-160x160.jpg}" class="rounded-circle" alt="User Image"
+                            width="30" height="30">
+                        <span>Alexander Pierce</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <!-- User image -->
+                        <li class="dropdown-item text-center">
+                            <img th:src="@{/assets/images/user2-160x160.jpg}" class="rounded-circle mx-auto d-block"
+                                alt="User Image" width="80" height="80">
+                            <p class="mt-2">Alexander Pierce - Web Developer</p>
+                            <p><small>Member since Nov. 2012</small></p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="dropdown-item">
+                            <div class="d-flex justify-content-around">
+                                <a href="#">Followers</a>
+                                <a href="#">Sales</a>
+                                <a href="#">Friends</a>
+                            </div>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="dropdown-item d-flex justify-content-between">
+                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
