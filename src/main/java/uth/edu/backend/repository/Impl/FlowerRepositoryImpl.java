@@ -1,21 +1,5 @@
 package uth.edu.backend.repository.Impl;
 
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery;
-import uth.edu.backend.model.Category;
-import uth.edu.backend.entity.Flower;
-import uth.edu.backend.repository.FlowersRepository;
-
-import java.math.BigDecimal;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
-
 public class FlowerRepositoryImpl {
     static final String DB_URL = "jdbc:sqlserver://localhost:1434;databaseName=MyDB;encrypt=true;trustServerCertificate=true";
     static final String USER = "sa";

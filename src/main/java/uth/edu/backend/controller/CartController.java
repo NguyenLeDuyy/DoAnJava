@@ -1,13 +1,10 @@
 package uth.edu.backend.controller;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uth.edu.backend.dto.request.CartCreationRequest;
 import uth.edu.backend.dto.request.CartUpdateRequest;
-import uth.edu.backend.dto.request.UserUpdateRequest;
 import uth.edu.backend.entity.Cart;
-import uth.edu.backend.entity.User;
 import uth.edu.backend.service.CartService;
 
 import java.util.List;

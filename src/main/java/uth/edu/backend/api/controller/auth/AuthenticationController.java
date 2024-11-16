@@ -4,20 +4,20 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uth.edu.backend.api.model.Register;
-import uth.edu.backend.service.UserService;
+import uth.edu.backend.service.Impl.UserServiceImpl;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
 
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
-    public AuthenticationController(UserService userService) {
-        this.userService = userService;
+    public AuthenticationController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
     @PostMapping("/register")
     public ResponseEntity registerUser(@Valid @RequestBody Register register) {
-    userService.registerUser(register);
+    userServiceImpl.registerUser(register);
     return ResponseEntity.ok().build();
 }
 }
