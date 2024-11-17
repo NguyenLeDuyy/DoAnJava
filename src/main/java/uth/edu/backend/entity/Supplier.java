@@ -13,7 +13,8 @@ import java.util.Set;
 @Entity
 public class Supplier {
     @Id
-    @Column(name = "SupplierId") // Thêm tên cột rõ ràng
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "SupplierId")
     Integer id;
 
     @Column(name = "SupplierName", nullable = false) // Thêm ràng buộc không null
