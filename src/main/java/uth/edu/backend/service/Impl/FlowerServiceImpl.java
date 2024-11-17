@@ -3,6 +3,7 @@ package uth.edu.backend.service.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.backend.dto.response.FlowerDTO;
+import uth.edu.backend.entity.Category;
 import uth.edu.backend.repository.FlowersRepository;
 import uth.edu.backend.entity.Flower;
 import uth.edu.backend.service.FlowerService;
@@ -14,6 +15,38 @@ import java.util.List;
 public class FlowerServiceImpl implements FlowerService {
     @Autowired
     private FlowersRepository flowersRepository;
+
+    @Override
+    public List<Flower> getAll() {
+        return flowersRepository.findAll();
+    }
+
+    @Override
+    public Boolean create(Flower flower) {
+        try {
+            this.flowersRepository.save(flower);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+
+    }
+
+    @Override
+    public Boolean update(Flower flower) {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteCategory(Integer id) {
+        return null;
+    }
+
+    @Override
+    public Category findById(Integer id) {
+        return null;
+    }
 
     @Override
     public List<FlowerDTO> findAllFlower(String name) {
