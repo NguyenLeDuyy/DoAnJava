@@ -13,7 +13,7 @@ public interface FlowerService {
     Boolean create(Flower flower);
     Boolean update(Flower flower);
     Boolean deleteCategory(Integer id);
-    Category findById(Integer id);
+    Flower findById(Integer id);
 
 
     List<FlowerDTO> findAllFlower(String name);

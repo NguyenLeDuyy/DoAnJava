@@ -35,7 +35,13 @@ public class FlowerServiceImpl implements FlowerService {
 
     @Override
     public Boolean update(Flower flower) {
-        return null;
+        try {
+            this.flowersRepository.save(flower);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
@@ -44,8 +50,8 @@ public class FlowerServiceImpl implements FlowerService {
     }
 
     @Override
-    public Category findById(Integer id) {
-        return null;
+    public Flower findById(Integer id) {
+        return this.flowersRepository.findById(id).get();
     }
 
     @Override
