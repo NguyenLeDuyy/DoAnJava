@@ -65,13 +65,12 @@
                             <td class="text-center" th:text="${flower.id}">1</td>
                             <td th:text="${flower.flowerName ?: 'No Name'}">Flower 1</td>
                             <td th:text="${flower.description ?: 'No Description'}">Description 1</td>
-                            <td >
-                                <span th:text="${#numbers.formatDecimal(flower.price,0,'COMMA',2,'POINT')}">10.00</span>
+                            <td>
+                                <span th:text="${#numbers.formatDecimal(flower.price,0,'COMMA',0,'POINT')} + ' VNĐ'">10 VNĐ</span>
                             </td>
 
-                            <td>
-                                <img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}" alt="Flower Image" style="width:50px;height:50px;">
-                            </td>
+                            <td><img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}" alt="Flower Image"
+                                     style="width:50px;height:50px;"></td>
                             <td th:text="${flower.season ?: 'No Season'}">Spring</td>
                             <td th:text="${flower.quantity ?: 0}">10</td>
                             <td th:text="${flower.category?.categoryName ?: 'No Category'}">Category 1</td>
