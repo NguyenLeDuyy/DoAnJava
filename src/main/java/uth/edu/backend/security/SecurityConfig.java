@@ -25,19 +25,19 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception{
         http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((auth)->auth.
-                requestMatchers("/*").permitAll().
-                requestMatchers("/admin/**").permitAll().
+                        requestMatchers("/*").permitAll().
+                        requestMatchers("/admin/**").permitAll().
 //                requestMatchers("/admin/**").hasAuthority("ADMIN").
-                anyRequest().authenticated())
+        anyRequest().authenticated())
                 .formLogin(login->login.loginPage("/login").loginProcessingUrl("/login")
-                .usernameParameter("username").passwordParameter("password").
-                defaultSuccessUrl("/admin", true)).logout(logout->logout.logoutUrl("/admin-logout").logoutSuccessUrl("/login")).
+                        .usernameParameter("username").passwordParameter("password").
+                        defaultSuccessUrl("/admin", true)).logout(logout->logout.logoutUrl("/admin-logout").logoutSuccessUrl("/login")).
                 logout(logout->logout.logoutUrl("/admin-logout").logoutSuccessUrl("/login"));
         return http.build();
     }
 
     @Bean
     WebSecurityCustomizer webSecurityCustomizer(){
-        return (web) -> web.ignoring().requestMatchers("/static/**", "/fe/**", "assets/**");
+        return (web) -> web.ignoring().requestMatchers("/static/**", "/fe/**", "assets/**", "uploads/**");
     }
 }
