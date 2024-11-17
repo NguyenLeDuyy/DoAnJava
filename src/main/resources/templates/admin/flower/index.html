@@ -37,7 +37,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Danh sách hoa</h3>
                     <div>
-                        <a th:href="@{/admin/add-flower}" class="btn btn-success">Thêm mới hoa</a>
+                        <a th:href="@{/admin/flower-add}" class="btn btn-success">Thêm mới hoa</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -58,17 +58,24 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <tr th:if="${#lists.isEmpty(listFlowers)}">
+                            <td colspan="10" class="text-center">No flowers available</td>
+                        </tr>
                         <tr th:each="flower : ${listFlowers}">
                             <td class="text-center" th:text="${flower.id}">1</td>
-                            <td th:text="${flower.flowerName}">Flower 1</td>
-                            <td th:text="${flower.description}">Description 1</td>
-                            <td th:text="${flower.price}">100.00</td>
-                            <td><img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}" alt="Flower Image"
-                                     style="width:50px;height:50px;"></td>
-                            <td th:text="${flower.season}">Spring</td>
-                            <td th:text="${flower.quantity}">10</td>
-                            <td th:text="${flower.category.categoryName}">Category 1</td>
-                            <td th:text="${flower.supplier?.name}">Supplier 1</td>
+                            <td th:text="${flower.flowerName ?: 'No Name'}">Flower 1</td>
+                            <td th:text="${flower.description ?: 'No Description'}">Description 1</td>
+                            <td >
+                                <span th:text="${#numbers.formatDecimal(flower.price,0,'COMMA',2,'POINT')}">10.00</span>
+                            </td>
+
+                            <td>
+                                <img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}" alt="Flower Image" style="width:50px;height:50px;">
+                            </td>
+                            <td th:text="${flower.season ?: 'No Season'}">Spring</td>
+                            <td th:text="${flower.quantity ?: 0}">10</td>
+                            <td th:text="${flower.category?.categoryName ?: 'No Category'}">Category 1</td>
+                            <td th:text="${flower.supplier?.name ?: 'No Supplier'}">Supplier 1</td>
                             <td class="text-center">
                                 <a th:href="@{/admin/edit-flower/{id}(id=${flower.id})}" class="btn btn-primary btn-sm">Edit</a>
                                 <a th:href="@{/admin/delete-flower/{id}(id=${flower.id})}"
@@ -77,6 +84,7 @@
                             </td>
                         </tr>
                         </tbody>
+
                     </table>
                 </div>
                 <!-- /.box-body -->

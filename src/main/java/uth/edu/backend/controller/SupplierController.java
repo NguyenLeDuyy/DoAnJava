@@ -15,15 +15,16 @@ public class SupplierController {
 
     // api create supplier
     @PostMapping
-    public Supplier createSupplier(@RequestBody Supplier supplier) {
-        return supplierService.createSupplier(supplier);
+    public Boolean create(@RequestBody Supplier supplier) {
+        return supplierService.create(supplier);
     }
 
     // api cập nhật supplier
     @PutMapping
-    public Supplier updateSupplier(@RequestParam("id") Integer id, @RequestBody Supplier supplier) {
-        return supplierService.updateSupplier(id, supplier);
+    public Boolean update(@RequestBody Supplier supplier) {
+        return supplierService.update(supplier);
     }
+
 
     // api xóa order
     @DeleteMapping("/{id}")

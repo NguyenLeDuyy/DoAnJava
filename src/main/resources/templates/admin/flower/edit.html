@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="admin/fragments/head :: head"></head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <div th:replace="admin/fragments/header :: header"></div>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Blank page
+                <small>it all starts here</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Examples</a></li>
+                <li class="active">Blank page</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Update Flower</h3>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/admin/edit-flower}" method="post" th:object="${flower}" enctype="multipart/form-data">
+                            <input type="hidden" class="form-control" name="flowerName"
+                                   placeholder="Enter flower name" required th:field="*{id}">
+                            <input type="hidden" class="form-control" name="flowerName"
+                                   placeholder="Enter flower name" required th:field="*{imageUrl}">
+                            <div class="mb-3">
+                                <label for="flowerName" class="form-label">Flower Name</label>
+                                <input type="text" class="form-control" id="flowerName" name="flowerName"
+                                       placeholder="Enter flower name" required th:field="*{flowerName}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description"
+                                          name="description" placeholder="Enter description"
+                                          required th:field="*{description}">>
+                  </textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="price" name="price" placeholder="Enter price" required
+                                       th:field="*{price}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="imageUrl" class="form-label">Image URL</label>
+                                <input type="file" class="form-control" id="imageUrl" name="file">
+                                <img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}" alt="Flower Image" style="width:50px;height:50px;">
+                            </div>
+                            <div class="mb-3">
+                                <label for="season" class="form-label">Season</label>
+                                <select class="form-control" id="season" name="category" required th:field="*{season}">
+                                    <option value="Spring">Mùa xuân</option>
+                                    <option value="Summer">Mùa hè</option>
+                                    <option value="Autumn">Mùa thu</option>
+                                    <option value="Winter">Mùa đông</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity"
+                                       required th:field="*{quantity}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-control" id="category" name="category" required th:field="*{category.id}">
+                                    <option th:each="category : ${listCategories}" th:value="${category.id}"
+                                            th:text="${category.categoryName}"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="supplier" class="form-label">Supplier</label>
+                                <select class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
+                                    <option th:each="supplier : ${listSuppliers}" th:value="${supplier.id}" th:text="${supplier.name}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="admin/fragments/footer :: footer"></div>
+</div>
+
+<!-- ./wrapper -->
+<div th:replace="admin/fragments/script :: script"></div>
+<!-- jQuery 3 -->
+
+</body>
+
+</html>

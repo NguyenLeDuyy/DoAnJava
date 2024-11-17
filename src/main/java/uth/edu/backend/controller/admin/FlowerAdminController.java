@@ -3,10 +3,7 @@ package uth.edu.backend.controller.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.backend.entity.Category;
 import uth.edu.backend.entity.Flower;
@@ -33,15 +30,14 @@ public class FlowerAdminController {
     @Autowired
     private StorageService storageService;
 
-    @RequestMapping("/flower")
+    @GetMapping("/flower")
     public String index(Model model) {
-
-        List<Flower> list = flowerService.getAll();
+        List<Flower> list = flowerService.getAllFlowers();
         model.addAttribute("listFlowers", list);
         return "admin/flower/index";
     }
 
-    @RequestMapping("/flower-add")
+    @GetMapping("/flower-add")
     public String add(Model model) {
         Flower flower = new Flower();
         List<Category> list = categoryService.getAllCategories();
@@ -68,4 +64,43 @@ public class FlowerAdminController {
             return "admin/flower/add";
         }
     }
+
+    @GetMapping("/edit-flower/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model) {
+        Flower flower = flowerService.findById(id);
+
+        model.addAttribute("flower", flower);
+        List<Category> list = categoryService.getAllCategories();
+        List<Supplier> suppliers = supplierService.getAllSuppliers();
+
+        model.addAttribute("listCategories", list);
+        model.addAttribute("listSuppliers", suppliers);
+        return "admin/flower/edit";
+    }
+
+    @PostMapping("/edit-flower")
+    public String update(@ModelAttribute("flower") Flower flower, @RequestParam("file") MultipartFile file) {
+
+        String fileName = file.getOriginalFilename();
+        boolean isEmty = fileName == null || fileName.trim().length() == 0;
+        if(!isEmty){
+            // upload file
+            this.storageService.store(file);
+            flower.setImageUrl(fileName);
+        }
+        if(this.flowerService.update(flower)) {
+            return "redirect:/admin/flower";
+        }
+        else {
+            return "admin/flower/edit";
+        }
+    }
+//    public String update(@ModelAttribute("flower") Flower flower) {
+//        if (flowerService.update(flower)) {
+//            return "redirect:/admin/flower";
+//        } else {
+//            return "admin/flower/edit";
+//        }
+//    }
+
 }
