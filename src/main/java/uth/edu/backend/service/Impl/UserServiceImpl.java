@@ -29,6 +29,52 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+
+    @Override
+    public Boolean create(User user) {
+        try {
+            if(userRepository.existsByUsername(user.getUsername())){
+                throw new AppException(ErrorCode.USER_EXISTED);
+            }
+            this.userRepository.save(user);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean update(User user) {
+        try {
+            if(userRepository.existsByUsername(user.getUsername())){
+                throw new AppException(ErrorCode.USER_EXISTED);
+            }
+            this.userRepository.save(user);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean deleteUser(Integer id) {
+        try {
+            this.userRepository.deleteById(Long.valueOf(id));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public User findById(Long id) {
+        return userRepository.findById(Long.valueOf(id)).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+
 //    @Autowired
 //    private BCryptPasswordEncoder passwordEncoder;
 
@@ -60,8 +106,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    public UserResponse getUser(Long id) {
-        return userMapper.toUserResponse(userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found")));
+    public User getUser(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     public UserResponse updateUser(Long userId, UserUpdateRequest request) {

@@ -8,6 +8,4 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
-    @Override
-    List<Category> findAll();
 }

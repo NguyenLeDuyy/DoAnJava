@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    UserResponse getUser(@PathVariable("userId") Long userId){
+    User getUser(@PathVariable("userId") Long userId){
         return userServiceImpl.getUser(userId);
     }
 

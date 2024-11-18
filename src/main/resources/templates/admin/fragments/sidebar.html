@@ -16,9 +16,10 @@
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
+                            class="fa fa-search"></i>
+                    </button>
+                </span>
             </div>
         </form>
         <!-- /.search form -->
@@ -30,8 +31,8 @@
                 <a th:href="@{/admin/category}">
                     <i class="fa fa-th"></i> <span>Quản lý danh mục </span>
                     <span class="pull-right-container">
-              <small class="label pull-right bg-green">FE</small>
-            </span>
+                        <small class="label pull-right bg-green">FE</small>
+                    </span>
                 </a>
             </li>
 
@@ -39,23 +40,35 @@
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>Quản lý sản phẩm</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a th:href="@{/admin/flower}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
                     <li><a th:href="@{/admin/flower-add}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
-<!--                    <li><a th:href="@{/admin/edit-flower/{id}(id=${flower.id})}"><i class="fa fa-circle-o"></i> Chỉnh sửa</a></li>-->
+                    <!--                    <li><a th:href="@{/admin/edit-flower/{id}(id=${flower.id})}"><i class="fa fa-circle-o"></i> Chỉnh sửa</a></li>-->
                 </ul>
 
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>Quản lý người dùng</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a th:href="@{/admin/user}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+                    <li><a th:href="@{/admin/user-add}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+                </ul>
             </li>
 
             <li>
                 <a href="">
                     <i class="fa fa-th"></i> <span>Widgets</span>
                     <span class="pull-right-container">
-              <small class="label pull-right bg-green">Hot</small>
-            </span>
+                        <small class="label pull-right bg-green">Hot</small>
+                    </span>
                 </a>
             </li>
 
