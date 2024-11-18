@@ -95,6 +95,27 @@ public class FlowerAdminController {
             return "admin/flower/edit";
         }
     }
+
+    @GetMapping("/delete-flower/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        if(this.flowerService.deleteFlower(id)) {
+            return "redirect:/admin/flower";
+        }
+        else {
+            return "admin/flower/index";
+        }
+    }
+
+//    @DeleteMapping("/{id}")
+//    public boolean deleteFlower(@PathVariable("id") Integer id) {
+//        return flowerService.deleteFlower(id);
+//    }
+
+    @DeleteMapping("/delete-flower/{id}")
+    public boolean deleteFlower(@PathVariable("id") Integer id) {
+        return flowerService.deleteFlower(id);
+    }
+
 //    public String update(@ModelAttribute("flower") Flower flower) {
 //        if (flowerService.update(flower)) {
 //            return "redirect:/admin/flower";
