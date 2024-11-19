@@ -73,33 +73,4 @@ public class UserAdminController {
         }
     }
 
-    // api create category
-//    @PostMapping
-//    public Category createCategory(@RequestBody Category category) {
-//        return categoryService.create(category);
-//    }
-//
-//    // api cập nhật category
-//    @PutMapping
-//    public Category updateCategory(@RequestParam("id") Integer id, @RequestBody Category category) {
-//        return categoryService.updateCategory(id, category);
-//    }
-
-    // api xóa category
-//    @DeleteMapping("/{id}")
-//    public boolean deleteCategory(@PathVariable("id") Integer id) {
-//        return categoryService.deleteCategory(id);
-//    }
-//
-//    // api lấy danh sách category
-//    @GetMapping("/list")
-//    public List<Category> getAllCategories() {
-//        return categoryService.getAllCategories();
-//    }
-
-    // api lấy 1 category
-//    @GetMapping("/{id}")
-//    public Category getOneCategory(@PathVariable("id") Integer id) {
-//        return categoryService.getOneCategory(id);
-//    }
 }

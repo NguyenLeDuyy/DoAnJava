@@ -15,6 +15,12 @@ public interface FlowerService {
     Boolean deleteCategory(Integer id);
     Flower findById(Integer id);
 
+    //Find 5 first flowers
+    List<Flower> findTop5Flowers();
+
+    //Find 5 last flowers
+    List<Flower> findLast6Flowers();
+
 
     List<FlowerDTO> findAllFlower(String name);
     //them hoa
@@ -33,6 +39,8 @@ public interface FlowerService {
     public List<Flower> findByFlowerNameContaining(String s);
     //tim kiem hoa theo ten va mua
     public List<Flower> findByFlowerNameContainingAndSeason(String name, String season);
+
+
     //cập nhật hoa theo ten va nha cung cap
 //    public void updateFlowerByIdAndSupplier(Integer id, Supplier supplier);
 //    Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier);

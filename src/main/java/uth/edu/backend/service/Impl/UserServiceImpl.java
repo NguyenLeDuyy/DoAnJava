@@ -2,6 +2,7 @@ package uth.edu.backend.service.Impl;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import uth.edu.backend.api.model.Register;
 import uth.edu.backend.dto.request.UserCreationRequest;
@@ -29,6 +30,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 
     @Override
     public Boolean create(User user) {
@@ -36,7 +39,15 @@ public class UserServiceImpl implements UserService {
             if(userRepository.existsByUsername(user.getUsername())){
                 throw new AppException(ErrorCode.USER_EXISTED);
             }
+
+            String encodedPassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encodedPassword);
             this.userRepository.save(user);
+
+            Cart cart = new Cart();
+            cart.setUser(user);
+            cartRepository.save(cart);
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();

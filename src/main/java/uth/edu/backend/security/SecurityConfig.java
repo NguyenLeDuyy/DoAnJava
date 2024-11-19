@@ -15,7 +15,7 @@ import uth.edu.backend.entity.custom.CustomUserDetailsService;
 public class SecurityConfig {
 
     @Autowired
-    private CustomUserDetailsService userDetailsService;
+    private CustomUserDetailsService customUserDetailsService;
 
     @Bean
     BCryptPasswordEncoder passwordEncoder(){
@@ -28,10 +28,11 @@ public class SecurityConfig {
                         requestMatchers("/*").permitAll().
                         requestMatchers("/admin/**").permitAll().
 //                requestMatchers("/admin/**").hasAuthority("ADMIN").
+//                requestMatchers("/seller/**").hasAuthority("SELLER").
         anyRequest().authenticated())
                 .formLogin(login->login.loginPage("/login").loginProcessingUrl("/login")
                         .usernameParameter("username").passwordParameter("password").
-                        defaultSuccessUrl("/admin", true)).logout(logout->logout.logoutUrl("/admin-logout").logoutSuccessUrl("/login")).
+                        defaultSuccessUrl("/", true)).logout(logout->logout.logoutUrl("/logout").logoutSuccessUrl("/login")).
                 logout(logout->logout.logoutUrl("/admin-logout").logoutSuccessUrl("/login"));
         return http.build();
     }

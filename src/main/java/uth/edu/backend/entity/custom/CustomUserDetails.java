@@ -5,14 +5,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import uth.edu.backend.entity.User;
 
 import java.util.Collection;
-import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
     private User user;
     private Collection<? extends GrantedAuthority> authorities;
 
     public CustomUserDetails() {
-
     }
 
     public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
@@ -52,7 +50,6 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-//        return user.isEnabled();
         return true;
     }
 }
