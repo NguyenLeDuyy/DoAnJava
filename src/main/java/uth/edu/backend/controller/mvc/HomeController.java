@@ -33,4 +33,11 @@ public class HomeController {
         model.addAttribute("listFlowers", list);
         return "product";
     }
+
+    @RequestMapping("/product-detail")
+    public String productDetail(Model model) {
+
+
+        return "product-detail";
+    }
 }
