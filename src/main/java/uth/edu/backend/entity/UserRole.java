@@ -1,5 +1,6 @@
 package uth.edu.backend.entity;
 
+import java.io.Serializable;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -7,7 +8,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "user_role")
-public class UserRole {
+public class UserRole implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

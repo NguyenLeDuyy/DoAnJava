@@ -22,17 +22,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
-        Set<UserRole> roles = user.getUserRoles();
+    User user = userService.findByUsername(username);
+    if (user == null) {
+        throw new UsernameNotFoundException("User not found");
+    }
 
-        for (UserRole userRole : roles) {
-            grantedAuthoritySet.add(new SimpleGrantedAuthority(userRole.getRole().getName()));
-        }
+    Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
+    Set<UserRole> roles = user.getUserRoles();
 
-        return new CustomUserDetails(user, grantedAuthoritySet);
+    for (UserRole userRole : roles) {
+        grantedAuthoritySet.add(new SimpleGrantedAuthority(userRole.getRole().getName()));
+    }
+
+    return new CustomUserDetails(user, grantedAuthoritySet);
     }
 }

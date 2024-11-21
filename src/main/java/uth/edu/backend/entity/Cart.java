@@ -8,6 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -15,7 +16,10 @@ import java.util.Set;
 @Entity
 @Table(name = "Cart")
 @EqualsAndHashCode(exclude = {"user", "cartDetails", "orders"})
-public class Cart {
+public class Cart implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CartId", nullable = false)
