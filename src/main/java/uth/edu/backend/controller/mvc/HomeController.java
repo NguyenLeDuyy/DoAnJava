@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -60,6 +61,35 @@ public class HomeController {
         return "product-detail";
     }
 
+    @RequestMapping("/product-detail/{id}")
+    public String productDetail(@PathVariable("id") Integer id, Model model) {
+        Flower flower = flowerService.getOneFlower(id);
+        model.addAttribute("flower", flower);
+
+        return "product-detail";
+    }
+
+//    @RequestMapping("/product-detail/{id}")
+//    public String productDetail(@PathVariable("id") Integer id, Model model) {
+//        try {
+//            // Lấy thông tin sản phẩm từ Service
+//            Flower flower = flowerService.findById(id);
+//            if (flower == null) {
+//                model.addAttribute("error", "Flower not found");
+//                return "error";
+//            }
+//
+//            // Đưa thông tin sản phẩm vào Model
+//            model.addAttribute("flower", flower);
+//            return "product-detail";
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            model.addAttribute("error", "An error occurred while fetching product details");
+//            return "error";
+//        }
+//    }
+
+  
     @RequestMapping("/user")
     public String user(Model model, HttpSession session, Principal principal) {
         if (principal != null) {
@@ -67,8 +97,8 @@ public class HomeController {
             String username = principal.getName();
             User user = userService.findByUsername(username);
             // Store in session
-            session.setAttribute("userId", user.getId());
-            session.setAttribute("username", user.getUsername());
+//             session.setAttribute("userId", user.getId());
+//             session.setAttribute("username", user.getUsername());
             model.addAttribute("userId", user.getId());
             model.addAttribute("username", user.getUsername());
         } else {

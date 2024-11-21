@@ -19,6 +19,10 @@ public interface FlowersRepository extends JpaRepository<Flower, Integer> {
     List<Flower> findTop8ByOrderById();
 
 
+    List<Flower> findTop5ByOrderByIdDesc();
+
+    List<Flower> findTop6ByOrderById();
+
 //    void updateFlowerByIdAndSupplier(Integer id, Supplier supplier);
     // Flower updateFlowerByIdContainingAndSupplier(Integer id, Supplier supplier);
     // Flower findByFlowerNameContaining(String s);

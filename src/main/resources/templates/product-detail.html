@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-
 <!-- Mirrored from portotheme.com/html/molla/product-extended.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jan 2024 03:16:00 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
@@ -45,9 +44,9 @@
                             <div class="col-md-6">
                                 <div class="product-gallery">
                                     <figure class="product-main-image">
-                                        <img id="product-zoom" th:src="@{fe/images/products/single/extended/3.jpg}"
-                                            data-zoom-image="fe/images/products/single/extended/3-big.jpg}"
-                                            alt="product image">
+                                        <img id="product-zoom" th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}"
+                                             data-zoom-image="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}"
+                                             alt="product image">
 
                                         <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                             <i class="icon-arrows"></i>
@@ -56,31 +55,9 @@
 
                                     <div id="product-zoom-gallery" class="product-image-gallery">
                                         <a class="product-gallery-item" href="#"
-                                            data-image="fe/images/products/single/extended/1.jpg}"
-                                            data-zoom-image="fe/images/products/single/extended/1-big.jpg}">
-                                            <img th:src="@{fe/images/products/single/extended/1-small.jpg}"
-                                                alt="product side">
-                                        </a>
-
-                                        <a class="product-gallery-item" href="#"
-                                            data-image="fe/images/products/single/extended/2.jpg}"
-                                            data-zoom-image="fe/images/products/single/extended/2-big.jpg}">
-                                            <img th:src="@{fe/images/products/single/extended/2-small.jpg}"
-                                                alt="product cross">
-                                        </a>
-
-                                        <a class="product-gallery-item active" href="#"
-                                            data-image="fe/images/products/single/extended/3.jpg}"
-                                            data-zoom-image="fe/images/products/single/extended/3-big.jpg}">
-                                            <img th:src="@{fe/images/products/single/extended/3-small.jpg}"
-                                                alt="product with model">
-                                        </a>
-
-                                        <a class="product-gallery-item" href="#"
-                                            data-image="fe/images/products/single/extended/4.jpg}"
-                                            data-zoom-image="fe/images/products/single/extended/4-big.jpg}">
-                                            <img th:src="@{fe/images/products/single/extended/4-small.jpg}"
-                                                alt="product back">
+                                           th:data-image="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}"
+                                           th:data-zoom-image="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}">
+                                            <img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}" alt="product image">
                                         </a>
 
                                     </div><!-- End .product-image-gallery -->
@@ -89,7 +66,7 @@
 
                             <div class="col-md-6">
                                 <div class="product-details">
-                                    <h1 class="product-title">Yellow tie strap block heel sandals</h1>
+                                    <h1 class="product-title" th:text="${flower.flowerName ?: 'No Name'}"></h1>
                                     <!-- End .product-title -->
 
                                     <div class="ratings-container">
@@ -100,14 +77,10 @@
                                             )</a>
                                     </div><!-- End .rating-container -->
 
-                                    <div class="product-price">
-                                        $70.00
-                                    </div><!-- End .product-price -->
+                                    <div class="product-price" th:text="${#numbers.formatDecimal(flower.price, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></div><!-- End .product-price -->
 
                                     <div class="product-content">
-                                        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus
-                                            metus libero eu augue. Morbi purus libero, faucibus adipiscing. Sed lectus.
-                                        </p>
+                                        <p th:text="${flower.description ?: 'No description available.'}"></p>
                                     </div><!-- End .product-content -->
 
                                     <div class="details-filter-row details-row-size">
@@ -162,11 +135,8 @@
                                     <div class="product-details-footer">
                                         <div class="product-cat">
                                             <span>Category:</span>
-                                            <a href="#">Women</a>,
-                                            <a href="#">Shoes</a>,
-                                            <a href="#">Sandals</a>,
-                                            <a href="#">Yellow</a>
-                                        </div><!-- End .product-cat -->
+                                            <a href="#" th:text="${flower.category?.categoryName ?: 'No Category'}"></a>
+                                        </div>
 
                                         <div class="social-icons social-icons-sm">
                                             <span class="social-label">Share:</span>
@@ -218,7 +188,7 @@
                     <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
                     <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
                         data-owl-options='{
-                            "nav": false, 
+                            "nav": false,
                             "dots": true,
                             "margin": 20,
                             "loop": false,
