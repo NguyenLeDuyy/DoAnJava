@@ -117,7 +117,6 @@ public class FlowerAdminController {
     }
 
 
-
 //    public String update(@ModelAttribute("flower") Flower flower) {
 //        if (flowerService.update(flower)) {
 //            return "redirect:/admin/flower";
