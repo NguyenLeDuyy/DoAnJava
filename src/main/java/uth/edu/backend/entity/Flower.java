@@ -49,11 +49,11 @@ public class Flower {
 
     @ColumnDefault("getdate()")
     @Column(name = "CreatedDate")
-    LocalDate createdDate;
+    LocalDate createdDate = LocalDate.now();
 
     @ColumnDefault("getdate()")
     @Column(name = "LastModifiedDate")
-    LocalDate lastModifiedDate;
+    LocalDate lastModifiedDate = LocalDate.now();
 
     @Column(name = "quantity", nullable = false)
     Integer quantity;

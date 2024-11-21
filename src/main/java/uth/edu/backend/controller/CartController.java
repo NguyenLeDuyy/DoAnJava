@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import uth.edu.backend.dto.request.CartCreationRequest;
 import uth.edu.backend.dto.request.CartUpdateRequest;
 import uth.edu.backend.entity.Cart;
-import uth.edu.backend.service.CartService;
+import uth.edu.backend.service.Impl.CartServiceImpl;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping ("/carts")
 public class CartController {
     @Autowired
-    private CartService cartService;
+    private CartServiceImpl cartService;
 
     @PostMapping
     Cart createCart(@RequestBody CartCreationRequest request){

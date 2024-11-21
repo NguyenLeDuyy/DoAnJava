@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
+import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -12,7 +14,10 @@ import java.util.Set;
 @Entity
 @Table(name = "Users")
 @EqualsAndHashCode(exclude = {"cart", "orders", "userDetails", "userRoles"})
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserId", nullable = false)
@@ -23,6 +28,9 @@ public class User {
 
     @Column(name = "Password", nullable = false, length = 1000)
     private String password;
+
+    @Column(name = "ConfirmPassword", nullable = false, length = 1000, columnDefinition = "varchar(1000) default '123456'")
+    private String confirmPassword = "123456";
 
     @Column(name = "Email", length = 320)
     private String email;
