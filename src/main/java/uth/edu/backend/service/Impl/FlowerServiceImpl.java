@@ -3,6 +3,7 @@ package uth.edu.backend.service.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.backend.dto.response.FlowerDTO;
+import uth.edu.backend.entity.Supplier;
 import uth.edu.backend.repository.FlowersRepository;
 import uth.edu.backend.entity.Flower;
 import uth.edu.backend.service.FlowerService;
@@ -129,6 +130,11 @@ public class FlowerServiceImpl implements FlowerService {
     @Override
     public List<Flower> findByFlowerNameContainingAndSeason(String name, String season) {
         return flowersRepository.findByFlowerNameContainingAndSeason(name, season);
+    }
+
+    @Override
+    public List<Flower> findBySupplier(Supplier supplier) {
+        return List.of();
     }
 
     //Find 5 first flowers

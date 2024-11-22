@@ -56,4 +56,7 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     Set<UserRole> userRoles = new LinkedHashSet<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Supplier supplier;
 }
