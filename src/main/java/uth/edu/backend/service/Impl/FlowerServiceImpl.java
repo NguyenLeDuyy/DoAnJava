@@ -143,6 +143,10 @@ public class FlowerServiceImpl implements FlowerService {
         return flowersRepository.findTop8ByOrderById();
     }
 
+    @Override
+    public List<Flower> findBySupplier(Supplier supplier) {
+        return List.of();
+    }//
 
 //    @Override
 //    public void updateFlowerByIdAndSupplier(Integer id, Supplier supplier) {
