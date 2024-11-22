@@ -44,7 +44,7 @@
                       <th>Price</th>
                       <th>Quantity</th>
                       <th>Total</th>
-                      <th></th>
+                      <th>Action</th>
                     </tr>
                   </thead>
 
@@ -64,14 +64,42 @@
                         </div><!-- End .product -->
                       </td>
                       <td class="price-col" th:text="${#numbers.formatDecimal(cartDetail.getFlower().getPrice(),0,'COMMA',0,'POINT')} + ' VNĐ'"></td>
-                      <td class="quantity-col">
-                        <div class="cart-product-quantity">
-                          <input type="number" class="form-control" th:value="${cartDetail.getQuantity()}" min="1" max="10" step="1"
-                            data-decimals="0" required>
-                        </div><!-- End .cart-product-quantity -->
-                      </td>
-                      <td class="total-col" th:text="${#numbers.formatDecimal(cartDetail.getTotalPrice(),0,'COMMA',0,'POINT')} + ' VNĐ'"></td>
-                      <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+
+                      <form th:action="@{/update-cart}" method="post">
+
+                        <input type="hidden" th:value="${cartDetail.getFlower().id}" name="id">
+                        <td class="quantity-col">
+                          <div class="cart-product-quantity">
+                            <input type="number" class="form-control" th:value="${cartDetail.getQuantity()}" name="quantity" min="1" max="10" step="1"
+                                   data-decimals="0" required>
+                          </div><!-- End .cart-product-quantity -->
+                        </td>
+                        <td class="total-col" th:text="${#numbers.formatDecimal(cartDetail.getTotalPrice(),0,'COMMA',0,'POINT')} + ' VNĐ'"></td>
+                        <td class="remove-col">
+                          <button type="submit" name="action" value="update" title="Update" class="btn btn-primary">Update</button>
+                          <button type="submit" name="action" value="delete" title="delete" class="btn btn-warning">Delete</button>
+                        </td>
+
+                      </form>
+<!--                      -->
+
+<!--                        <input type="hidden" th:value="${flower.id}" name="id">-->
+<!--                        <td class="quantity-col">-->
+<!--                          <div class="cart-product-quantity">-->
+<!--                            <input type="number" class="form-control" th:value="${cartDetail.getQuantity()}" min="1" max="10" step="1"-->
+<!--                              data-decimals="0" required>-->
+
+<!--                          </div>&lt;!&ndash; End .cart-product-quantity &ndash;&gt;-->
+<!--                        </td>-->
+<!--                        <div class="remove-col">-->
+<!--                        </div>-->
+<!--                      </form>-->
+<!--                      <form th:action="@{/delete-cart}" method="post">-->
+<!--                        <input type="hidden" th:value="${flower.id}" name="id">-->
+<!--                        <td class="total-col" th:text="${#numbers.formatDecimal(cartDetail.getTotalPrice(),0,'COMMA',0,'POINT')} + ' VNĐ'"></td>-->
+<!--                        <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>-->
+
+
                     </tr>
                   </tbody>
                 </table><!-- End .table table-wishlist -->
@@ -89,7 +117,7 @@
                     </form>
                   </div><!-- End .cart-discount -->
 
-                  <a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
+                  <a th:href="@{/cart}" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
                 </div><!-- End .cart-bottom -->
               </div><!-- End .col-lg-9 -->
               <aside class="col-lg-3">

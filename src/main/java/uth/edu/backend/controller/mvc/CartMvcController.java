@@ -67,7 +67,7 @@ public class CartMvcController {
 
     }
 
-    @PostMapping("/update-cart")
+    @RequestMapping(value = "/update-cart", params = "action=update", method = RequestMethod.POST)
     public String updateCart(@RequestParam("quantity") int quantity,
                              @RequestParam("id") Integer productId,
                              Model model,
@@ -86,7 +86,7 @@ public class CartMvcController {
         }
     }
 
-    @PostMapping("/delete-cart")
+    @RequestMapping(value = "/update-cart", params = "action=delete", method = RequestMethod.POST)
     public String deleteCart(@RequestParam("id") Integer productId,
                              Model model,
                              Principal principal){
