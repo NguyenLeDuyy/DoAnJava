@@ -36,7 +36,7 @@ public class Flower {
     String description;
 
     @Column(name = "Price", nullable = false, precision = 18, scale = 2)
-    BigDecimal price;
+    Integer price;
 
     @Nationalized
     @Lob

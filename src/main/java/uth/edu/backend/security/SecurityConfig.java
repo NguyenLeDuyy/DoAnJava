@@ -42,13 +42,21 @@ public class SecurityConfig {
 
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers("/*").permitAll()
+                                                .requestMatchers("/static/**", "/fe/**", "/assets/**", "/uploads/**",
+                                                                "/css/**", "/js/**", "/images/**")
+                                                .permitAll()
+                                                .requestMatchers("/fe/**", "/css/**", "/js/**", "/images/**")
+                                                .permitAll()
                                                 .requestMatchers("/login").permitAll()
                                                 .requestMatchers("/logout").permitAll()
                                                 .requestMatchers("/admin/**").permitAll() // Remove authority checks
                                                 .requestMatchers("/cart/**").permitAll() // Remove authority checks
                                                 .requestMatchers("/product/**").permitAll() // Remove authority checks
                                                 .requestMatchers("/product-detail/**").permitAll() // Remove authority
-                                                                                                   // checks
+                                                .requestMatchers("/identity/product-extended/**").permitAll()
+                                                .requestMatchers("/identity/product/**").permitAll()
+                                                .requestMatchers("/cart").permitAll()
+                                                .requestMatchers("/product-extended/**").permitAll()
                                                 .requestMatchers("/user/**").permitAll() // Remove authority checks
                                                 .requestMatchers("/admin/**").hasAuthority("ADMIN") // Uncomment
                                                 // authority
@@ -73,8 +81,10 @@ public class SecurityConfig {
                 return http.build();
         }
 
-        @Bean
-        WebSecurityCustomizer webSecurityCustomizer() {
-                return (web) -> web.ignoring().requestMatchers("/static/**", "/fe/**", "assets/**", "uploads/**");
-        }
+//        @Bean
+//        public WebSecurityCustomizer webSecurityCustomizer() {
+//                return (web) -> web.ignoring().requestMatchers("/static/**", "/fe/**",
+//                                "assets/**", "uploads/**",
+//                                "/css/**", "/js/**", "/images/**", "product-detail/**");
+//        }
 }

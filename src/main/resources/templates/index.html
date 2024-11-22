@@ -5,12 +5,12 @@
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
-<head th:replace="layout/head :: head" />
+<head th:replace="~{layout/head :: head}" />
 
 <body>
     <div class="page-wrapper">
 
-        <head th:replace="layout/header :: header" />
+        <head th:replace="~{layout/header :: header}" />
 
         <main class="main">
             <div class="intro-slider-container mb-5">
@@ -413,50 +413,61 @@
                                             }
                                         }'>
                                         <div class="product product-2" th:each="flower : ${topFlowers}">
-                                            <figure class="product-media">
-                                                <span class="product-label label-circle label-top">Top</span>
-                                                <a th:href="@{/product-detail/{id}(id=${flower.id})}">
-                                                    <img  th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}"
-                                                        alt="Product image" class="product-image">
-                                                </a>
-                                                <div class="product-action-vertical">
-                                                    <a href="#" class="btn-product-icon btn-wishlist"
-                                                        title="Add to wishlist"></a>
-                                                </div><!-- End .product-action -->
 
-                                                <div class="product-action">
-                                                    <a href="#" class="btn-product btn-cart"
-                                                        title="Add to cart"><span>add to cart</span></a>
-                                                    <a href="popup/quickView.html" class="btn-product btn-quickview"
-                                                        title="Quick view"><span>quick view</span></a>
-                                                </div><!-- End .product-action -->
-                                            </figure><!-- End .product-media -->
+                                            <form th:action="@{/add-to-cart}" method="post">
 
-                                            <div class="product-body">
-                                                <div class="product-cat">
-                                                    <a href="#" th:text="${flower.category?.categoryName ?: 'No Category'}"></a>
-                                                </div><!-- End .product-cat -->
-                                                <h3 class="product-title"><a th:href="@{/product-detail/{id}(id=${flower.id})}"  th:text="${flower.flowerName ?: 'No Name'}"></a></h3><!-- End .product-title -->
-                                                <div class="product-price" th:text="${#numbers.formatDecimal(flower.price,0,'COMMA',0,'POINT')} + ' VNĐ'">
+                                                <figure class="product-media">
+                                                    <span class="product-label label-circle label-top">Top</span>
+                                                    <a th:href="@{/product-extended(id=${flower.id})}">
+                                                        <img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}"
+                                                            alt="Product image" class="product-image">
+                                                    </a>
+                                                    <div class="product-action-vertical">
+                                                        <a href="#" class="btn-product-icon btn-wishlist"
+                                                            title="Add to wishlist"></a>
+                                                    </div><!-- End .product-action -->
 
-                                                </div><!-- End .product-price -->
-                                                <div class="ratings-container">
-                                                    <div class="ratings">
-                                                        <div class="ratings-val" style="width: 100%;"></div>
-                                                        <!-- End .ratings-val -->
-                                                    </div><!-- End .ratings -->
-                                                    <span class="ratings-text">( 4 Reviews )</span>
-                                                </div><!-- End .rating-container -->
+                                                    <input type="hidden" th:value="${flower.id}" name="id">
 
-                                                <div class="product-nav product-nav-dots">
-                                                    <a href="#" style="background: #69b4ff;"><span class="sr-only">Color
-                                                            name</span></a>
-                                                    <a href="#" style="background: #ff887f;"><span class="sr-only">Color
-                                                            name</span></a>
-                                                    <a href="#" class="active" style="background: #333333;"><span
-                                                            class="sr-only">Color name</span></a>
-                                                </div><!-- End .product-nav -->
-                                            </div><!-- End .product-body -->
+                                                    <div class="product-action">
+                                                        <button type="submit" class="btn-product btn-cart" value="Add to Cart"><span>add to cart</span></button>
+                                                        <a href="popup/quickView.html" class="btn-product btn-quickview"
+                                                            title="Quick view"><span>quick view</span></a>
+                                                    </div><!-- End .product-action -->
+                                                </figure><!-- End .product-media -->
+
+                                                <div class="product-body">
+                                                    <div class="product-cat">
+                                                        <a href="#"
+                                                            th:text="${flower.category?.categoryName ?: 'No Category'}"></a>
+                                                    </div><!-- End .product-cat -->
+                                                    <h3 class="product-title"><a
+                                                            th:href="@{/product-extended(id=${flower.id})}"
+                                                            th:text="${flower.flowerName ?: 'No Name'}"></a></h3>
+                                                    <!-- End .product-title -->
+                                                    <div class="product-price" th:text="${#numbers.formatDecimal(flower.price,0,'COMMA',0,'POINT')} + ' VNĐ'">
+
+                                                    </div><!-- End .product-price -->
+                                                    <div class="ratings-container">
+                                                        <div class="ratings">
+                                                            <div class="ratings-val" style="width: 100%;"></div>
+                                                            <!-- End .ratings-val -->
+                                                        </div><!-- End .ratings -->
+                                                        <span class="ratings-text">( 4 Reviews )</span>
+                                                    </div><!-- End .rating-container -->
+
+                                                    <div class="product-nav product-nav-dots">
+                                                        <a href="#" style="background: #69b4ff;"><span class="sr-only">Color
+                                                                name</span></a>
+                                                        <a href="#" style="background: #ff887f;"><span class="sr-only">Color
+                                                                name</span></a>
+                                                        <a href="#" class="active" style="background: #333333;"><span
+                                                                class="sr-only">Color name</span></a>
+                                                    </div><!-- End .product-nav -->
+                                                </div><!-- End .product-body -->
+
+                                            </form>
+
                                         </div><!-- End .product -->
                                     </div><!-- End .owl-carousel -->
                                 </div><!-- .End .tab-pane -->
@@ -483,54 +494,63 @@
                     <div class="row justify-content-center">
                         <div class="col-6 col-md-4 col-lg-3" th:each="flower : ${topFlowers}">
                             <div class="product product-2">
-                                <figure class="product-media">
-                                    <span class="product-label label-circle label-sale">Sale</span>
-                                    <a href="product.html">
-                                        <img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}"
-                                              alt="Product image" class="product-image">
-                                    </a>
 
-                                    <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"></a>
-                                    </div><!-- End .product-action -->
+                                <form th:action="@{/add-to-cart}" method="post">
 
-                                    <div class="product-action">
-                                        <a href="#" class="btn-product btn-cart" title="Add to cart"><span>add to
-                                                cart</span></a>
-                                        <a href="popup/quickView.html" class="btn-product btn-quickview"
-                                            title="Quick view"><span>quick view</span></a>
-                                    </div><!-- End .product-action -->
-                                </figure><!-- End .product-media -->
+                                    <figure class="product-media">
+                                        <span class="product-label label-circle label-sale">Sale</span>
+                                        <a th:href="@{/product-extended(id=${flower.id})}">
+                                            <img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}"
+                                                  alt="Product image" class="product-image">
+                                        </a>
 
-                                <div class="product-body">
-                                    <div class="product-cat">
-                                        <a href="#" th:text="${flower.category?.categoryName ?: 'No Category'}"></a>
-                                    </div><!-- End .product-cat -->
-                                    <h3 class="product-title"><a th:href="@{/product-detail/{id}(id=${flower.id})}"  th:text="${flower.flowerName ?: 'No Name'}"></a></h3><!-- End .product-title -->
-                                    <div class="product-price">
-                                        <span class="new-price"  th:text="${#numbers.formatDecimal(flower.price,0,'COMMA',0,'POINT')} + ' VNĐ'"></span>
-                                       <span class="old-price" th:text="'Was ' + ${#numbers.formatDecimal(flower.price - 30000, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
-                                    </div><!-- End .product-price -->
-                                    <div class="ratings-container">
-                                        <div class="ratings">
-                                            <div class="ratings-val" style="width: 40%;"></div><!-- End .ratings-val -->
-                                        </div><!-- End .ratings -->
-                                        <span class="ratings-text">( 4 Reviews )</span>
-                                    </div><!-- End .rating-container -->
+                                        <input type="hidden" th:value="${flower.id}" name="id">
 
-                                    <div class="product-nav product-nav-dots">
-                                        <a href="#" class="active" style="background: #666666;"><span
-                                                class="sr-only">Color name</span></a>
-                                        <a href="#" style="background: #ff887f;"><span class="sr-only">Color
-                                                name</span></a>
-                                        <a href="#" style="background: #6699cc;"><span class="sr-only">Color
-                                                name</span></a>
-                                        <a href="#" style="background: #f3dbc1;"><span class="sr-only">Color
-                                                name</span></a>
-                                        <a href="#" style="background: #eaeaec;"><span class="sr-only">Color
-                                                name</span></a>
-                                    </div><!-- End .product-nav -->
-                                </div><!-- End .product-body -->
+                                        <div class="product-action-vertical">
+                                            <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"></a>
+                                        </div><!-- End .product-action -->
+
+                                        <div class="product-action">
+                                            <button type="submit" class="btn-product btn-cart" value="Add to Cart"><span>add to cart</span></button>
+                                            <a href="popup/quickView.html" class="btn-product btn-quickview"
+                                                title="Quick view"><span>quick view</span></a>
+                                        </div><!-- End .product-action -->
+                                    </figure><!-- End .product-media -->
+
+                                    <div class="product-body">
+                                        <div class="product-cat">
+                                            <a href="#" th:text="${flower.category?.categoryName ?: 'No Category'}"></a>
+                                        </div><!-- End .product-cat -->
+                                        <h3 class="product-title"><a th:href="@{/product-extended(id=${flower.id})}"
+                                                th:text="${flower.flowerName ?: 'No Name'}"></a></h3>
+                                        <!-- End .product-title -->
+                                        <div class="product-price">
+                                            <span class="new-price"  th:text="${#numbers.formatDecimal(flower.price,0,'COMMA',0,'POINT')} + ' VNĐ'"></span>
+                                           <span class="old-price" th:text="'Was ' + ${#numbers.formatDecimal(flower.price - 30000, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
+                                        </div><!-- End .product-price -->
+                                        <div class="ratings-container">
+                                            <div class="ratings">
+                                                <div class="ratings-val" style="width: 40%;"></div><!-- End .ratings-val -->
+                                            </div><!-- End .ratings -->
+                                            <span class="ratings-text">( 4 Reviews )</span>
+                                        </div><!-- End .rating-container -->
+
+                                        <div class="product-nav product-nav-dots">
+                                            <a href="#" class="active" style="background: #666666;"><span
+                                                    class="sr-only">Color name</span></a>
+                                            <a href="#" style="background: #ff887f;"><span class="sr-only">Color
+                                                    name</span></a>
+                                            <a href="#" style="background: #6699cc;"><span class="sr-only">Color
+                                                    name</span></a>
+                                            <a href="#" style="background: #f3dbc1;"><span class="sr-only">Color
+                                                    name</span></a>
+                                            <a href="#" style="background: #eaeaec;"><span class="sr-only">Color
+                                                    name</span></a>
+                                        </div><!-- End .product-nav -->
+                                    </div><!-- End .product-body -->
+
+                                </form>
+
                             </div><!-- End .product -->
                         </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
                     </div><!-- End .row -->

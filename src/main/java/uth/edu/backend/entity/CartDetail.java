@@ -19,19 +19,20 @@ public class CartDetail {
     @Column(name = "CartDetailId", nullable = false)
     private Integer id;
 
-    @ManyToOne(optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "CartId", nullable = false)
     private Cart cart;
 
-    @ManyToOne(optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "FlowerId", nullable = false)
     private Flower flower;
 
     @Column(name = "Quantity", nullable = false)
-    private Short quantity;
+    private Integer quantity;
 
     @Column(name = "Price", nullable = false, precision = 18, scale = 2)
-    private BigDecimal price;
+    private BigDecimal totalPrice;
+
+//    @Column(name = "UnitPrice", nullable = false)
+//    private Short unitPrice;
 }

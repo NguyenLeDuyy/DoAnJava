@@ -9,10 +9,10 @@ import uth.edu.backend.service.Impl.CartServiceImpl;
 
 import java.util.List;
 
-@RestController
-@RequestMapping ("/carts")
+//@RestController
+//@RequestMapping ("/carts")
 public class CartController {
-    @Autowired
+//    @Autowired
     private CartServiceImpl cartService;
 
     @PostMapping

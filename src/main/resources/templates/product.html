@@ -5,12 +5,12 @@
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
-<head th:replace="layout/head :: head" />
+<head th:replace="~{layout/head :: head}" />
 
 <body>
     <div class="page-wrapper">
 
-        <head th:replace="layout/header :: header" />
+        <head th:replace="~{layout/header :: header}" />
 
         <main class="main">
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
@@ -35,77 +35,8 @@
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
 
-            <div class="page-content">
-                <div class="container">
-                    <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
+            <div th:replace="~{layout/YouMayAlsoLike :: YouMayAlsoLike}" />
 
-                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl"
-                        data-owl-options='{
-                            "nav": false, 
-                            "dots": true,
-                            "margin": 20,
-                            "loop": false,
-                            "responsive": {
-                                "0": {
-                                    "items":1
-                                },
-                                "480": {
-                                    "items":2
-                                },
-                                "768": {
-                                    "items":3
-                                },
-                                "992": {
-                                    "items":4
-                                },
-                                "1200": {
-                                    "items":4,
-                                    "nav": true,
-                                    "dots": false
-                                }
-                            }
-                        }'>
-                        <div class="product product-7 text-center" th:each="flower : ${listFlowers}">
-                            <figure class="product-media">
-                                <span class="product-label label-new">New</span>
-                                <a th:href="@{/product-detail/{id}(id=${flower.id})}">
-                                    <img th:src="@{/uploads/{imageUrl}(imageUrl=${flower.imageUrl})}"
-                                        alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to
-                                            wishlist</span></a>
-                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview"
-                                        title="Quick view"><span>Quick view</span></a>
-                                    <a href="#" class="btn-product-icon btn-compare"
-                                        title="Compare"><span>Compare</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                                <div class="product-action">
-                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                </div><!-- End .product-action -->
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#" th:text="${flower.category?.categoryName ?: 'No Category'}"></a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a th:href="@{/product-detail/{id}(id=${flower.id})}"
-                                        th:text="${flower.flowerName ?: 'No Name'}"></a></h3><!-- End .product-title -->
-                                <div class="product-price" th:text="${#numbers.formatDecimal(flower.price,0,'COMMA',0,'POINT')} + ' VNĐ'"></div><!-- End .product-price -->
-                                <div class="ratings-container">
-                                    <div class="ratings">
-                                        <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
-                                    </div><!-- End .ratings -->
-                                    <span class="ratings-text">( 4 Reviews )</span>
-                                </div><!-- End .rating-container -->
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                    </div><!-- End .owl-carousel -->
-                </div><!-- End .container -->
-            </div><!-- End .page-content -->
         </main><!-- End .main -->
 
         <footer class="footer">

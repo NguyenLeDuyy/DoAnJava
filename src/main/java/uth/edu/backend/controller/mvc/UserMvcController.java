@@ -18,6 +18,8 @@ import uth.edu.backend.entity.User;
 import uth.edu.backend.service.CartService;
 import uth.edu.backend.service.UserService;
 
+import java.security.Principal;
+
 @Controller
 @SessionAttributes({ "userId", "username", "cartId" })
 public class UserMvcController {
@@ -141,4 +143,32 @@ public class UserMvcController {
         // If there are errors, return to the register page
         return "register";
     }
+
+    @RequestMapping("/user")
+    public String user(Model model, HttpSession session, Principal principal) {
+        if (principal != null) {
+            // Get authenticated user details
+            String username = principal.getName();
+            User user = userService.findByUsername(username);
+            // Store in session
+            // session.setAttribute("userId", user.getId());
+            // session.setAttribute("username", user.getUsername());
+            model.addAttribute("userId", user.getId());
+            model.addAttribute("username", user.getUsername());
+        } else {
+            // Clear session if no authenticated user
+            session.removeAttribute("userId");
+        }
+        return "user";
+    }
+
+    // Example of working with Principal (logged in user)
+    @RequestMapping("/profile")
+    public String profile(Model model, Principal principal) {
+        if (principal != null) {
+            model.addAttribute("username", principal.getName());
+        }
+        return "profile";
+    }
+
 }

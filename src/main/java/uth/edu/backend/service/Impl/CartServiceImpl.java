@@ -4,20 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uth.edu.backend.dto.request.*;
 import uth.edu.backend.entity.Cart;
+import uth.edu.backend.entity.CartDetail;
+import uth.edu.backend.entity.Flower;
 import uth.edu.backend.entity.User;
+import uth.edu.backend.repository.CartDetailRepository;
 import uth.edu.backend.repository.CartRepository;
 import uth.edu.backend.repository.UserRepository;
 import uth.edu.backend.service.CartService;
 
+import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class CartServiceImpl implements CartService {
     @Autowired
-    CartRepository cartRepository;
+    private CartRepository cartRepository;
 
     @Autowired
-    UserRepository userRepository;
+    private CartDetailRepository cartDetailRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public Cart createCart(CartCreationRequest request) {
         Cart cart = new Cart();
@@ -72,6 +81,128 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public Cart addProductToCart(Flower flower, int quantity, User user) {
+        Cart cart = user.getCart();
+        if (cart == null) {
+            cart = new Cart();
+            cart.setUser(user);
+        }
+
+        Set<CartDetail> cartDetails = cart.getCartDetails();
+        CartDetail cartDetail = findCartDetail(cartDetails, flower.getId());
+        if(cartDetails == null) {
+            cartDetails = new HashSet<>();
+            if (cartDetail == null){
+                cartDetail = new CartDetail();
+                cartDetail.setCart(cart);
+                cartDetail.setFlower(flower);
+                cartDetail.setQuantity(quantity);
+                cartDetail.setTotalPrice(BigDecimal.valueOf(flower.getPrice() * quantity));
+                cartDetails.add(cartDetail);
+                cartDetailRepository.save(cartDetail);
+            }
+        }else {
+            if (cartDetail == null){
+                cartDetail = new CartDetail();
+                cartDetail.setCart(cart);
+                cartDetail.setFlower(flower);
+                cartDetail.setQuantity(quantity);
+                cartDetail.setTotalPrice(BigDecimal.valueOf(flower.getPrice() * quantity));
+                cartDetails.add(cartDetail);
+                cartDetailRepository.save(cartDetail);
+            }else {
+                cartDetail.setQuantity(cartDetail.getQuantity() + quantity);
+                cartDetail.setTotalPrice(BigDecimal.valueOf(flower.getPrice() * cartDetail.getQuantity()));
+                cartDetailRepository.save(cartDetail);
+            }
+        }
+        cart.setCartDetails(cartDetails);
+        int totalItems = totalItems(cart.getCartDetails());
+        double totalPrice = totalPrice(cart.getCartDetails());
+
+        cart.setTotalItems(totalItems);
+        cart.setTotalPrice(totalPrice);
+        cart.setUser(user);
+
+        return cartRepository.save(cart);
+    }
+
+    @Override
+    public Cart updateProductInCart(Flower flower, int quantity, User user) {
+        Cart cart = user.getCart();
+
+        Set<CartDetail> cartDetails = cart.getCartDetails();
+
+        CartDetail detail = findCartDetail(cartDetails, flower.getId());
+
+        detail.setQuantity(quantity);
+        detail.setTotalPrice(BigDecimal.valueOf(flower.getPrice() * quantity));
+        cartDetailRepository.save(detail);
+
+        int totalItems = totalItems(cart.getCartDetails());
+        double totalPrice = totalPrice(cart.getCartDetails());
+
+        cart.setTotalItems(totalItems);
+        cart.setTotalPrice(totalPrice);
+
+        return cartRepository.save(cart);
+    }
+
+    @Override
+    public Cart deleteProductFromCart(Flower flower, User user) {
+        Cart cart = user.getCart();
+
+        Set<CartDetail> cartDetails = cart.getCartDetails();
+
+        CartDetail detail = findCartDetail(cartDetails, flower.getId());
+
+        cartDetails.remove(detail);
+
+        cartDetailRepository.delete(detail);
+
+
+        int totalItems = totalItems(cart.getCartDetails());
+        double totalPrice = totalPrice(cart.getCartDetails());
+
+        cart.setCartDetails(cartDetails);
+        cart.setTotalItems(totalItems);
+        cart.setTotalPrice(totalPrice);
+
+        return cartRepository.save(cart);
+    }
+
+    private CartDetail findCartDetail(Set<CartDetail> cartDetails, Integer productId) {
+        if(cartDetails == null) {
+            return null;
+        }
+        CartDetail cartDetail = null;
+
+        for (CartDetail detail : cartDetails) {
+            if(detail.getFlower().getId().equals(productId)) {
+                cartDetail = detail;
+                break;
+            }
+        }
+        return cartDetail;
+    }
+
+    private int totalItems(Set<CartDetail> cartDetails) {
+        int totalItems = 0;
+        for (CartDetail detail : cartDetails) {
+            totalItems += detail.getQuantity();
+        }
+        return totalItems;
+    }
+
+    private double totalPrice(Set<CartDetail> cartDetails) {
+        double totalPrice = 0;
+        for (CartDetail detail : cartDetails) {
+            totalPrice += detail.getTotalPrice().doubleValue();
+        }
+        return totalPrice;
+    }
+
+    @Override
     public Cart findByUserId(Long userId) {
         return cartRepository.findByUserId(userId);
 
@@ -80,12 +211,6 @@ public class CartServiceImpl implements CartService {
     @Override
     public Cart createCart(Cart cart) {
         return cartRepository.save(cart);
-    }
-
-
-    @Override
-    public void addToCart(Cart cart, Long productId, int quantity) {
-
     }
 
     @Override

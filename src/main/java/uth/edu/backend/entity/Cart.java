@@ -2,7 +2,7 @@ package uth.edu.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-        import lombok.Data;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
@@ -34,6 +34,12 @@ public class Cart implements Serializable {
     @ColumnDefault("'Chua thanh toan'")
     @Column(name = "Status", length = 50)
     private String status = "Chua thanh toan";
+
+    @Column(name = "TotalPrice")
+    private Double totalPrice;
+
+    @Column(name = "TotalItems", nullable = true)
+    private Integer totalItems;
 
     @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY)
     private Set<CartDetail> cartDetails = new LinkedHashSet<>();

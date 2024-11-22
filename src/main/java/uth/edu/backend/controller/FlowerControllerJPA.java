@@ -19,7 +19,7 @@ public class FlowerControllerJPA {
     public void addFlowerJPA(@RequestBody FlowerRequestDTO flowerRequestDTO){
         Flower flower = new Flower();
         flower.setFlowerName(flowerRequestDTO.getName());
-        flower.setPrice(BigDecimal.valueOf(flowerRequestDTO.getPrice()));
+        flower.setPrice(flowerRequestDTO.getPrice());
         flower.setDescription(flowerRequestDTO.getDescription());
         flower.setSeason(flowerRequestDTO.getSeason());
         flower.setImageUrl(flowerRequestDTO.getImageUrl());
@@ -42,7 +42,7 @@ public class FlowerControllerJPA {
         Flower flower = new Flower();
         flower.setId(id);
         flower.setFlowerName(flowerRequestDTO.getName());
-        flower.setPrice(BigDecimal.valueOf(flowerRequestDTO.getPrice()));
+        flower.setPrice(flowerRequestDTO.getPrice());
         flower.setDescription(flowerRequestDTO.getDescription());
         flower.setSeason(flowerRequestDTO.getSeason());
         flower.setImageUrl(flowerRequestDTO.getImageUrl());
