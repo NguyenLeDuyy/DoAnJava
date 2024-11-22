@@ -40,6 +40,7 @@ public interface FlowerService {
     //tim kiem hoa theo ten va mua
     public List<Flower> findByFlowerNameContainingAndSeason(String name, String season);
 
+    public  List<Flower> findBySupplier(Supplier supplier);//
 
     //cập nhật hoa theo ten va nha cung cap
 //    public void updateFlowerByIdAndSupplier(Integer id, Supplier supplier);

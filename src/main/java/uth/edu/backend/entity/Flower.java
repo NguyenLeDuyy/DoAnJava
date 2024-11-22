@@ -74,6 +74,6 @@ public class Flower {
 
     @ManyToOne
     @JoinColumn(name = "SupplierId")
-    Supplier supplier;
+    User supplier;
 
 }
