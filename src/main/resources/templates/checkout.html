@@ -1,0 +1,21 @@
+<h1>Checkout</h1>
+<div th:if="${isGuest}">
+    <p>Welcome, Guest!</p>
+    <form th:action="@{/place-order}" method="post">
+        <label>Name:</label>
+        <input type="text" name="guestName" required />
+        <label>Email:</label>
+        <input type="email" name="guestEmail" required />
+        <label>Address:</label>
+        <textarea name="guestAddress" required></textarea>
+        <button type="submit">Place Order</button>
+    </form>
+</div>
+<div th:if="${!isGuest}">
+    <p>Welcome back, <span th:text="${username}"></span>!</p>
+    <form th:action="@{/place-order}" method="post">
+        <label>Address:</label>
+        <textarea name="address" required></textarea>
+        <button type="submit">Place Order</button>
+    </form>
+</div>

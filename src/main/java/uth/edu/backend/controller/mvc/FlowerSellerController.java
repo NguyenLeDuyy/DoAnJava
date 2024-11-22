@@ -1,4 +1,4 @@
-package uth.edu.backend.controller.admin;
+package uth.edu.backend.controller.mvc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +15,10 @@ import uth.edu.backend.service.SupplierService;
 
 import java.util.List;
 
+
 @Controller
-@RequestMapping("/admin")
-public class FlowerAdminController {
+@RequestMapping("/seller")
+public class FlowerSellerController {
     @Autowired
     private CategoryService categoryService;
 
@@ -30,11 +31,14 @@ public class FlowerAdminController {
     @Autowired
     private StorageService storageService;
 
+
+
     @GetMapping("/flower")
     public String index(Model model) {
         List<Flower> list = flowerService.getAllFlowers();
+//        List<Flower> list = flowerService.findBySupplier();
         model.addAttribute("listFlowers", list);
-        return "admin/flower/index";
+        return "seller/flower/index";
     }
 
     @GetMapping("/flower-add")
@@ -46,7 +50,7 @@ public class FlowerAdminController {
         model.addAttribute("flower", flower);
         model.addAttribute("listCategories", list);
         model.addAttribute("listSuppliers", suppliers);
-        return "admin/flower/add";
+        return "seller/flower/add";
     }
 
     @PostMapping("/product-add")
@@ -58,10 +62,10 @@ public class FlowerAdminController {
         flower.setImageUrl(fileName);
 
         if(this.flowerService.create(flower)) {
-            return "redirect:/admin/flower";
+            return "redirect:/seller/flower";
         }
         else {
-            return "admin/flower/add";
+            return "seller/flower/add";
         }
     }
 
@@ -75,7 +79,7 @@ public class FlowerAdminController {
 
         model.addAttribute("listCategories", list);
         model.addAttribute("listSuppliers", suppliers);
-        return "admin/flower/edit";
+        return "seller/flower/edit";
     }
 
     @PostMapping("/edit-flower")
@@ -89,27 +93,23 @@ public class FlowerAdminController {
             flower.setImageUrl(fileName);
         }
         if(this.flowerService.update(flower)) {
-            return "redirect:/admin/flower";
+            return "redirect:/seller/flower";
         }
         else {
-            return "admin/flower/edit";
+            return "seller/flower/edit";
         }
     }
 
     @GetMapping("/delete-flower/{id}")
     public String delete(@PathVariable("id") Integer id) {
         if(this.flowerService.deleteFlower(id)) {
-            return "redirect:/admin/flower";
+            return "redirect:/seller/flower";
         }
         else {
-            return "admin/flower/index";
+            return "seller/flower/index";
         }
     }
 
-//    @DeleteMapping("/{id}")
-//    public boolean deleteFlower(@PathVariable("id") Integer id) {
-//        return flowerService.deleteFlower(id);
-//    }
 
     @DeleteMapping("/delete-flower/{id}")
     public boolean deleteFlower(@PathVariable("id") Integer id) {

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import uth.edu.backend.dto.response.FlowerDTO;
 import uth.edu.backend.entity.Category;
 import uth.edu.backend.entity.Flower;
+import uth.edu.backend.entity.Supplier;
 
 import java.util.List;
 
@@ -40,6 +41,7 @@ public interface FlowerService {
     //tim kiem hoa theo ten va mua
     public List<Flower> findByFlowerNameContainingAndSeason(String name, String season);
 
+    public  List<Flower> findBySupplier(Supplier supplier);
 
     //cập nhật hoa theo ten va nha cung cap
 //    public void updateFlowerByIdAndSupplier(Integer id, Supplier supplier);

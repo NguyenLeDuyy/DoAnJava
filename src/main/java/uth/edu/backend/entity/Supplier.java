@@ -32,7 +32,11 @@ public class Supplier {
     @Column(name = "Status")
     String status;
 
+    @OneToOne(mappedBy = "supplier",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User user;
+
     @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY)
     Set<Flower> flowers = new LinkedHashSet<>();
+
 
 }
