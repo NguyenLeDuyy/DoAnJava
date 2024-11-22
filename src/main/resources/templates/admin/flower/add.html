@@ -38,7 +38,7 @@
                         <h3 class="card-title">Create New Flower</h3>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/admin/product-add}" method="post" th:object="${flower}" enctype="multipart/form-data">
+                        <form th:action="@{/seller/product-add}" method="post" th:object="${flower}" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="flowerName" class="form-label">Flower Name</label>
                                 <input type="text" class="form-control" id="flowerName" name="flowerName"
@@ -83,8 +83,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="supplier" class="form-label">Supplier</label>
-                                <select class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
-                                    <option th:each="supplier : ${listSuppliers}" th:value="${supplier.id}" th:text="${supplier.name}">
+                                <select class="form-control" id="supplier" name="supplier" th:field="*{supplier.id}">
+                                    <option th:each="supplier : ${listSuppliers}" th:value="${supplier.id}" th:text="${supplier.username}">
                                     </option>
                                 </select>
                             </div>

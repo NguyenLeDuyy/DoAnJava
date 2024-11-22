@@ -11,7 +11,7 @@ spring:
       table-name: SPRING_SESSION
     timeout: 30
   datasource:
-    url: "jdbc:sqlserver://localhost:1433;databaseName=MyDB;encrypt=true;trustServerCertificate=true"
+    url: "jdbc:sqlserver://localhost:1434;databaseName=MyDB;encrypt=true;trustServerCertificate=true"
     username: "sa"
     password: "Aesx5099@@"
   jpa:

@@ -74,7 +74,7 @@
                             <td th:text="${flower.season ?: 'No Season'}">Spring</td>
                             <td th:text="${flower.quantity ?: 0}">10</td>
                             <td th:text="${flower.category?.categoryName ?: 'No Category'}">Category 1</td>
-                            <td th:text="${flower.supplier?.name ?: 'No Supplier'}">Supplier 1</td>
+                            <td th:text="${flower.supplier?.username ?: 'No Supplier'}">Supplier 1</td>
                             <td class="text-center">
                                 <a th:href="@{/seller/edit-flower/{id}(id=${flower.id})}" class="btn btn-primary btn-sm">Edit</a>
                                 <a th:href="@{/seller/delete-flower/{id}(id=${flower.id})}"

@@ -13,13 +13,8 @@ public interface CartService {
 
     Cart deleteProductFromCart(Flower flower, User user);
 
-    Cart findByUserId(Long userId);
 
     Cart createCart(Cart cart);
 
 
-    void removeFromCart(Cart cart, Long productId);
-    void updateQuantity(Cart cart, Long productId, int quantity);
-    void clearCart(Cart cart);
-    void checkout(Cart cart);
 }

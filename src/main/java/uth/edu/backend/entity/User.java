@@ -3,8 +3,6 @@ package uth.edu.backend.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.ColumnDefault;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.io.Serializable;
 import java.util.LinkedHashSet;
@@ -12,8 +10,8 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "Users")
-@EqualsAndHashCode(exclude = {"cart", "orders", "userDetails", "userRoles"})
+@Table(name = "users")
+@EqualsAndHashCode(exclude = { "cart", "orders", "userDetails", "flowers" })
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,9 +39,9 @@ public class User implements Serializable {
     @Column(name = "enabled")
     boolean enabled = true;
 
-    @ColumnDefault("2")
-    @Column(name = "Role")
-    private Integer role = 2; // Set default value to 0
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RoleId", nullable = false)
+    private Role role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Cart cart;
@@ -51,9 +49,9 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Order> orders = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    Set<UserDetail> userDetails = new LinkedHashSet<>();
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private UserDetail userDetails;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    Set<UserRole> userRoles = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Flower> flowers = new LinkedHashSet<>();
 }

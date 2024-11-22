@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.backend.entity.Category;
 import uth.edu.backend.entity.Flower;
-import uth.edu.backend.entity.Supplier;
-import uth.edu.backend.service.CategoryService;
-import uth.edu.backend.service.FlowerService;
-import uth.edu.backend.service.StorageService;
-import uth.edu.backend.service.SupplierService;
+import uth.edu.backend.entity.Role;
+import uth.edu.backend.entity.User;
+import uth.edu.backend.service.*;
 
 import java.util.List;
 
@@ -23,13 +21,16 @@ public class FlowerSellerController {
     private CategoryService categoryService;
 
     @Autowired
-    private SupplierService supplierService;
-
-    @Autowired
     private FlowerService flowerService;
 
     @Autowired
     private StorageService storageService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
 
 
@@ -45,7 +46,8 @@ public class FlowerSellerController {
     public String add(Model model) {
         Flower flower = new Flower();
         List<Category> list = categoryService.getAllCategories();
-        List<Supplier> suppliers = supplierService.getAllSuppliers();
+        Role role = roleRepository.getById(3L);
+        List<User> suppliers = userService.findByRole(role);
 
         model.addAttribute("flower", flower);
         model.addAttribute("listCategories", list);
@@ -61,6 +63,8 @@ public class FlowerSellerController {
         String fileName = file.getOriginalFilename();
         flower.setImageUrl(fileName);
 
+        flower.setSupplier(userService.findById(flower.getSupplier().getId()));
+
         if(this.flowerService.create(flower)) {
             return "redirect:/seller/flower";
         }
@@ -75,7 +79,8 @@ public class FlowerSellerController {
 
         model.addAttribute("flower", flower);
         List<Category> list = categoryService.getAllCategories();
-        List<Supplier> suppliers = supplierService.getAllSuppliers();
+        Role role = roleRepository.getById(3L);
+        List<User> suppliers = userService.findByRole(role);
 
         model.addAttribute("listCategories", list);
         model.addAttribute("listSuppliers", suppliers);
@@ -91,6 +96,7 @@ public class FlowerSellerController {
             // upload file
             this.storageService.store(file);
             flower.setImageUrl(fileName);
+            flower.setSupplier(userService.findById(flower.getSupplier().getId()));
         }
         if(this.flowerService.update(flower)) {
             return "redirect:/seller/flower";

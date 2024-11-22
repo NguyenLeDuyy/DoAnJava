@@ -58,7 +58,7 @@
                                 <td th:text="${user.username ?: 'No Username'}">Username</td>
                                 <td th:text="${user.email ?: 'No Email'}">Email</td>
                                 <td th:text="${user.phoneNumber ?: 'No Phone'}">Phone</td>
-                                <td th:text="${user.role == 1 ? 'Admin' : user.role == 2 ? 'User' : 'Seller'}">Role</td>
+                                <td th:text="${user.role.getName()}">Role</td>
                                 <td>
                                     <span th:class="${user.enabled ? 'label label-success' : 'label label-danger'}"
                                         th:text="${user.enabled ? 'Active' : 'Inactive'}">Status</span>

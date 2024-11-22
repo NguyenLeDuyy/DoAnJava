@@ -2,24 +2,13 @@ package uth.edu.backend.controller;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uth.edu.backend.dto.request.FlowerRequestDTO;
 import uth.edu.backend.dto.response.FlowerDTO;
-import uth.edu.backend.entity.Category;
 import uth.edu.backend.entity.Flower;
-import uth.edu.backend.entity.Supplier;
 import uth.edu.backend.repository.FlowersRepository;
-import uth.edu.backend.repository.SupplierRepository;
 import uth.edu.backend.service.FlowerService;
 
-import java.io.File;
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -31,9 +20,6 @@ public class FlowerController {
 
     @Autowired
     private FlowersRepository flowersRepository;
-
-    @Autowired
-    private SupplierRepository supplierRepository;
 
     //test
     @GetMapping("/")
@@ -108,25 +94,6 @@ public class FlowerController {
 //                path, StandardCopyOption.REPLACE_EXISTING);
 
 
-    @PutMapping("/{flowerId}/seller/{sellerId}")
-    public ResponseEntity<?> assignSeller(@PathVariable Integer flowerId, @PathVariable Integer sellerId) {
-        try {
-            Flower flower = flowersRepository.findById(flowerId)
-                    .orElseThrow(() -> new RuntimeException("Flower not found"));
-
-            Supplier supplier = supplierRepository.findById(sellerId)
-                    .orElseThrow(() -> new RuntimeException("Seller not found"));
-
-            flower.setSupplier(supplier);
-            flowersRepository.save(flower);
-
-            return ResponseEntity.ok("Seller assigned successfully");
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Failed to assign seller: " + e.getMessage());
-        }
-    }
 
 
 }

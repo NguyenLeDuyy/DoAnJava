@@ -49,13 +49,16 @@ public class SecurityConfig {
                                                 .permitAll()
                                                 .requestMatchers("/login").permitAll()
                                                 .requestMatchers("/logout").permitAll()
-                                                .requestMatchers("/admin/**").permitAll() // Remove authority checks
+                                        .requestMatchers("/seller/**").permitAll()
+                                        .requestMatchers("/admin/**").permitAll() // Remove authority checks
                                                 .requestMatchers("/cart/**").permitAll() // Remove authority checks
                                                 .requestMatchers("/product/**").permitAll() // Remove authority checks
                                                 .requestMatchers("/product-detail/**").permitAll() // Remove authority
                                                 .requestMatchers("/identity/product-extended/**").permitAll()
                                                 .requestMatchers("/identity/product/**").permitAll()
                                                 .requestMatchers("/cart").permitAll()
+                                                .requestMatchers("/cart/**").permitAll()
+
                                                 .requestMatchers("/product-extended/**").permitAll()
                                                 .requestMatchers("/user/**").permitAll() // Remove authority checks
                                                 .requestMatchers("/admin/**").hasAuthority("ADMIN") // Uncomment

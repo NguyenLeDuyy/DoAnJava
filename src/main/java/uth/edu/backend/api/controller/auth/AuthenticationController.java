@@ -15,9 +15,5 @@ public class AuthenticationController {
     public AuthenticationController(UserServiceImpl userServiceImpl) {
         this.userServiceImpl = userServiceImpl;
     }
-    @PostMapping("/register")
-    public ResponseEntity registerUser(@Valid @RequestBody Register register) {
-    userServiceImpl.registerUser(register);
-    return ResponseEntity.ok().build();
-}
+
 }

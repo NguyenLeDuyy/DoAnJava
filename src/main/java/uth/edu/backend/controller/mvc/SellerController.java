@@ -15,11 +15,11 @@ public class SellerController {
 
     @RequestMapping("/")
     public String admin() {
-        return "seller/index";
+        return "/index";
     }
 
     @RequestMapping("/seller/flower")
     public String flower() {
-        return "seller/flower";
+        return "/flower";
     }
 }

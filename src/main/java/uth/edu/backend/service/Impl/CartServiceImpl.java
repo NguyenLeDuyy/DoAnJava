@@ -171,6 +171,11 @@ public class CartServiceImpl implements CartService {
         return cartRepository.save(cart);
     }
 
+    @Override
+    public Cart createCart(Cart cart) {
+        return cartRepository.save(cart);
+    }
+
     private CartDetail findCartDetail(Set<CartDetail> cartDetails, Integer productId) {
         if(cartDetails == null) {
             return null;
@@ -202,34 +207,4 @@ public class CartServiceImpl implements CartService {
         return totalPrice;
     }
 
-    @Override
-    public Cart findByUserId(Long userId) {
-        return cartRepository.findByUserId(userId);
-
-    }
-
-    @Override
-    public Cart createCart(Cart cart) {
-        return cartRepository.save(cart);
-    }
-
-    @Override
-    public void removeFromCart(Cart cart, Long productId) {
-
-    }
-
-    @Override
-    public void updateQuantity(Cart cart, Long productId, int quantity) {
-
-    }
-
-    @Override
-    public void clearCart(Cart cart) {
-
-    }
-
-    @Override
-    public void checkout(Cart cart) {
-
-    }
 }

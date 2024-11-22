@@ -1,6 +1,7 @@
 package uth.edu.backend.service;
 
 import org.springframework.stereotype.Service;
+import uth.edu.backend.entity.Role;
 import uth.edu.backend.entity.User;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface UserService {
     Boolean update(User user);
     Boolean deleteUser(Integer id);
     User findById(Long id);
+
+    List<User> findByRole(Role role);
 
 }

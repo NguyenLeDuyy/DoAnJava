@@ -3,7 +3,6 @@ package uth.edu.backend.controller.mvc;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,21 +13,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import uth.edu.backend.entity.Cart;
+import uth.edu.backend.entity.Role;
 import uth.edu.backend.entity.User;
+import uth.edu.backend.repository.UserRepository;
 import uth.edu.backend.service.CartService;
+import uth.edu.backend.service.RoleRepository;
 import uth.edu.backend.service.UserService;
 
 import java.security.Principal;
 
 @Controller
 @SessionAttributes({ "userId", "username", "cartId" })
-public class UserMvcController {
+public class AccountMvcController {
 
     @Autowired
     private UserService userService;
 
     @Autowired
     private CartService cartService;
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -54,19 +61,7 @@ public class UserMvcController {
             model.addAttribute("userId", user.getId());
             model.addAttribute("username", user.getUsername());
 
-            Cart cart = cartService.findByUserId(user.getId());
-
-            if (cart == null || cart.getId() == null) {
-                cart = new Cart();
-                cart.setUser(user);
-                cartService.createCart(cart);
-            }
-
-            session.setAttribute("cartId", cart.getId());
-            model.addAttribute("cartId", cart.getId());
-
-
-//            Integer cartSize =
+            // Integer cartSize =
 
             // Redirect based on role
             if (user.getRole().equals("ADMIN")) {
@@ -166,9 +161,39 @@ public class UserMvcController {
     @RequestMapping("/profile")
     public String profile(Model model, Principal principal) {
         if (principal != null) {
-            model.addAttribute("username", principal.getName());
+            User user = userService.findByUsername(principal.getName());
+            model.addAttribute("user", user);
         }
         return "profile";
     }
+
+    @PostMapping("/profile/edit-user")
+    public String update(@ModelAttribute("user") User user) {
+        User existingUser = userService.findById(user.getId());
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            user.setPassword(existingUser.getPassword());
+        }
+        user.setId(existingUser.getId());
+        if (this.userService.update(user)) {
+            return "profile";
+        } else {
+            return "index";
+        }
+    }
+
+    @PostMapping("/user/register-seller")
+    public String registerSeller(Principal principal, Model model) {
+    if (principal == null) {
+        return "redirect:/login";
+    }
+    User userExisted = userService.findByUsername(principal.getName());
+    if (userExisted == null) {
+        throw new IllegalArgumentException("User not found");
+    }
+    Role sellerRole = roleRepository.findById(3L).orElseThrow(() -> new IllegalArgumentException("Invalid role ID"));
+    userExisted.setRole(sellerRole);
+    userRepository.save(userExisted);
+    return "redirect:/seller";
+}
 
 }

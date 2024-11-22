@@ -38,7 +38,7 @@
                         <h3 class="card-title">Update Flower</h3>
                     </div>
                     <div class="card-body">
-                        <form th:action="@{/admin/edit-flower}" method="post" th:object="${flower}" enctype="multipart/form-data">
+                        <form th:action="@{/edit/edit-flower}" method="post" th:object="${flower}" enctype="multipart/form-data">
                             <input type="hidden" class="form-control" name="flowerName"
                                    placeholder="Enter flower name" required th:field="*{id}">
                             <input type="hidden" class="form-control" name="flowerName"
@@ -88,8 +88,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="supplier" class="form-label">Supplier</label>
-                                <select class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
-                                    <option th:each="supplier : ${listSuppliers}" th:value="${supplier.id}" th:text="${supplier.name}">
+                                <select class="form-control" id="supplier" name="supplier" th:field="*{supplier.id}">
+                                    <option th:each="supplier : ${listSuppliers}" th:value="${supplier.id}" th:text="${supplier.username}">
                                     </option>
                                 </select>
                             </div>

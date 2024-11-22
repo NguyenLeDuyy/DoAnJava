@@ -2,33 +2,31 @@ package uth.edu.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.springframework.security.core.GrantedAuthority;
 
-import java.util.Collection;
+import java.io.Serializable;
 
-@Entity
 @Data
-public class UserDetail {
+@Entity
+@Table(name = "UserDetail")
+@EqualsAndHashCode(exclude = { "user" })
+public class UserDetail implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserDetailId", nullable = false)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UserId", nullable = false)
     private User user;
 
-    @Column(name = "AddressLine", length = 512)
-    private String addressLine;
-
-    @Column(name = "District")
-    private String district;
-
-    @Column(name = "Province")
-    private String province;
+    @Column(name = "Address")
+    private String address;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.SET_NULL)

@@ -88,8 +88,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="supplier" class="form-label">Supplier</label>
-                                <select class="form-control" id="supplier" name="supplier" th:field="*{supplier}">
-                                    <option th:each="supplier : ${listSuppliers}" th:value="${supplier.id}" th:text="${supplier.name}">
+                                <select class="form-control" id="supplier" name="supplier" th:field="*{supplier.id}">
+                                    <option th:each="supplier : ${listSuppliers}" th:value="${supplier.id}" th:text="${supplier.username}">
                                     </option>
                                 </select>
                             </div>

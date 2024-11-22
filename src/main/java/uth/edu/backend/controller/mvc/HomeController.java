@@ -4,11 +4,9 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
+import uth.edu.backend.entity.Cart;
 import uth.edu.backend.entity.Category;
 import uth.edu.backend.entity.Flower;
 import uth.edu.backend.entity.User;
@@ -32,13 +30,15 @@ public class HomeController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/") // Add this
+    @RequestMapping(value={"/", "/index"}, method = RequestMethod.GET) // Add this
     public String home(Model model, HttpSession session, Principal principal) { // Add Principal
         if (principal != null) {
             // Get authenticated user details
             String username = principal.getName();
             User user = userService.findByUsername(username);
+            Cart cart = user.getCart();
             // Store in session
+            session.setAttribute("totalItems", cart.getTotalItems());
             session.setAttribute("userId", user.getId());
             session.setAttribute("username", user.getUsername());
             model.addAttribute("userId", user.getId());

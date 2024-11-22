@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import uth.edu.backend.entity.Role;
 import uth.edu.backend.entity.User;
-import uth.edu.backend.entity.UserRole;
 import uth.edu.backend.service.UserService;
 
 import java.util.Collection;
@@ -28,10 +28,22 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     Collection<GrantedAuthority> grantedAuthoritySet = new HashSet<>();
-    Set<UserRole> roles = user.getUserRoles();
+    Set<Role> roles = new HashSet<>();
+    Role role1 = new Role();
+    role1.setId(1L);
+    role1.setName("USER");
+    Role role2 = new Role();
+    role2.setId(2L);
+    role2.setName("ADMIN");
+    Role role3 = new Role();
+    role3.setId(3L);
+    role3.setName("SELLER");
+    roles.add(role1);
+    roles.add(role2);
+    roles.add(role3);
 
-    for (UserRole userRole : roles) {
-        grantedAuthoritySet.add(new SimpleGrantedAuthority(userRole.getRole().getName()));
+    for (Role userRole : roles) {
+        grantedAuthoritySet.add(new SimpleGrantedAuthority(userRole.getName()));
     }
 
     return new CustomUserDetails(user, grantedAuthoritySet);

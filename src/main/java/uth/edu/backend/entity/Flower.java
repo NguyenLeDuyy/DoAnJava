@@ -7,20 +7,20 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Nationalized;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Flower {
+@Table(name = "flower")
+@EqualsAndHashCode(exclude = { "user" })
+public class Flower implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "FlowerId", nullable = false)
@@ -72,8 +72,7 @@ public class Flower {
     @OneToMany(mappedBy = "flower", fetch = FetchType.LAZY)
     Set<UserDetail> userDetails = new LinkedHashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "SupplierId")
-    Supplier supplier;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "UserId", nullable = true)
+    private User supplier;
 }

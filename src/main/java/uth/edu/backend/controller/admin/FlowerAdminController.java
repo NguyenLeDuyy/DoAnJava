@@ -1,17 +1,16 @@
 package uth.edu.backend.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uth.edu.backend.entity.Category;
 import uth.edu.backend.entity.Flower;
-import uth.edu.backend.entity.Supplier;
-import uth.edu.backend.service.CategoryService;
-import uth.edu.backend.service.FlowerService;
-import uth.edu.backend.service.StorageService;
-import uth.edu.backend.service.SupplierService;
+import uth.edu.backend.entity.Role;
+import uth.edu.backend.entity.User;
+import uth.edu.backend.service.*;
 
 import java.util.List;
 
@@ -21,14 +20,18 @@ public class FlowerAdminController {
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private SupplierService supplierService;
 
     @Autowired
     private FlowerService flowerService;
 
     @Autowired
     private StorageService storageService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping("/flower")
     public String index(Model model) {
@@ -41,7 +44,8 @@ public class FlowerAdminController {
     public String add(Model model) {
         Flower flower = new Flower();
         List<Category> list = categoryService.getAllCategories();
-        List<Supplier> suppliers = supplierService.getAllSuppliers();
+        Role role = roleRepository.getById(3L);
+        List<User> suppliers = userService.findByRole(role);
 
         model.addAttribute("flower", flower);
         model.addAttribute("listCategories", list);
@@ -71,7 +75,8 @@ public class FlowerAdminController {
 
         model.addAttribute("flower", flower);
         List<Category> list = categoryService.getAllCategories();
-        List<Supplier> suppliers = supplierService.getAllSuppliers();
+        Role role = roleRepository.getById(3L);
+        List<User> suppliers = userService.findByRole(role);
 
         model.addAttribute("listCategories", list);
         model.addAttribute("listSuppliers", suppliers);
