@@ -58,6 +58,8 @@ public class SecurityConfig {
                                                 .requestMatchers("/identity/product/**").permitAll()
                                                 .requestMatchers("/cart").permitAll()
                                                 .requestMatchers("/cart/**").permitAll()
+                                                .requestMatchers("/checkout/**").permitAll()
+                                                .requestMatchers("/checkout").permitAll()
 
                                                 .requestMatchers("/product-extended/**").permitAll()
                                                 .requestMatchers("/user/**").permitAll() // Remove authority checks

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout/head :: head}"></head>
+
+<body>
+    <div class="page-wrapper">
+
+        <header th:replace="~{layout/header :: header}" />
+
+        <main class="main">
+            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+                <div class="container">
+                    <h1 class="page-title">Order<span>Shop</span></h1>
+                </div><!-- End .container -->
+            </div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Order</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12"></div>
+                    <div class="table-main table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="order-date">Order Date</th>
+                                    <th>Delivery Date</th>
+                                    <th class="price-pr">Order Status</th>
+                                    <th class="quantity-box">Quantity</th>
+                                    <th>Total Price</th>
+                                    <th class="total-pr">Payment Method</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="order : ${orders}">
+                                    <td class="order-date">
+                                        <span><b th:text="${order.orderDate}"></b></span>
+                                    </td>
+                                    <td class="name-pr">
+                                        <a th:if="${order.accept != null}" href="#">
+                                            <span th:text="${order.deliveryDate}"></span>
+                                        </a>
+                                        <a th:if="${order.accept == null}">
+                                            <p>Pending</p>
+                                        </a>
+                                    </td>
+                                    <td class="price-pr">
+                                        <p th:text="${order.orderStatus}"></p>
+                                    </td>
+                                    <td class="quantity-box" th:text="${order.quantity}"></td>
+                                    <td class="total-pr">
+                                        <p style="color: red" th:text="${order.totalPrice}"></p>
+                                    </td>
+                                    <td class="total-pr" style="color: black">
+                                        <span th:text="${order.paymentMethod}"></span>
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/save-order}" class="button-cancel">Place order</a>
+                                        <a th:href="@{/}" class="button-cancel">Cancel</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </main><!-- End .main -->
+
+    <head th:replace="~{layout/footer :: footer}" />
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Mobile Menu -->
+
+
+    <!-- Plugins JS File -->
+
+    <head th:replace="~{layout/script :: script}" />
+</body>
+
+
+<!-- Mirrored from portotheme.com/html/molla/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Jan 2024 02:58:25 GMT -->
+
+</html>

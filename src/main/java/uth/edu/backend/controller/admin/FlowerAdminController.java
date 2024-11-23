@@ -1,7 +1,6 @@
 package uth.edu.backend.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +9,8 @@ import uth.edu.backend.entity.Category;
 import uth.edu.backend.entity.Flower;
 import uth.edu.backend.entity.Role;
 import uth.edu.backend.entity.User;
+import uth.edu.backend.repository.CategoryRepository;
+import uth.edu.backend.repository.RoleRepository;
 import uth.edu.backend.service.*;
 
 import java.util.List;
@@ -19,7 +20,6 @@ import java.util.List;
 public class FlowerAdminController {
     @Autowired
     private CategoryService categoryService;
-
 
     @Autowired
     private FlowerService flowerService;

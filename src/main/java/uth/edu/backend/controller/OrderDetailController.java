@@ -3,7 +3,7 @@ package uth.edu.backend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uth.edu.backend.entity.OrderDetail;
-import uth.edu.backend.service.OrderDetailService;
+import uth.edu.backend.service.Impl.CartServiceImpl;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/orderdetails")
 public class OrderDetailController {
     @Autowired
-    private OrderDetailService orderDetailService;
+    private CartServiceImpl.OrderDetailService orderDetailService;
 
     //api tạo order detail
     @PostMapping

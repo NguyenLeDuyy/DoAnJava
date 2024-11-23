@@ -13,7 +13,7 @@ public class OrderDetail {
     @Column(name = "OrderDetailId", nullable = false)
     private Integer id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "OrderId", nullable = false)
     private Order order;
 

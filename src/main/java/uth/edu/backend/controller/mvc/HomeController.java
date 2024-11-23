@@ -38,9 +38,6 @@ public class HomeController {
             User user = userService.findByUsername(username);
             Cart cart = user.getCart();
             // Store in session
-            session.setAttribute("totalItems", cart.getTotalItems());
-            session.setAttribute("userId", user.getId());
-            session.setAttribute("username", user.getUsername());
             model.addAttribute("userId", user.getId());
             model.addAttribute("username", user.getUsername());
         }

@@ -13,7 +13,9 @@ import uth.edu.backend.entity.Role;
 import uth.edu.backend.entity.User;
 import uth.edu.backend.customexception.AppException;
 import uth.edu.backend.customexception.ErrorCode;
+import uth.edu.backend.entity.UserDetail;
 import uth.edu.backend.repository.CartRepository;
+import uth.edu.backend.repository.UserDetailRepository;
 import uth.edu.backend.repository.UserRepository;
 import uth.edu.backend.service.UserService;
 
@@ -26,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private CartRepository cartRepository;
+
+    @Autowired
+    private UserDetailRepository userDetailRepository;
 
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -87,6 +92,8 @@ public class UserServiceImpl implements UserService {
     public List<User> findByRole(Role role) {
         return userRepository.findByRole(role);
     }
+
+
 
 
 //    @Autowired

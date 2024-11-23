@@ -7,7 +7,9 @@ import org.hibernate.annotations.Nationalized;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -40,13 +42,13 @@ public class Order {
     private String shippingAddress;
 
     @Column(name = "OrderStatus", nullable = false)
-    private Integer orderStatus;
+    private String orderStatus;
 
     @Nationalized
     @Column(name = "PaymentMethod", nullable = false, length = 50)
     private String paymentMethod;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-    private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order", fetch = FetchType.LAZY)
+    private List<OrderDetail> orderDetails = new ArrayList<>();
 
 }

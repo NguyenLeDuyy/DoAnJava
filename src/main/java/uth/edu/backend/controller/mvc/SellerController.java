@@ -10,12 +10,12 @@ public class SellerController {
 
     @GetMapping
     public String index() {
-        return "redirect:/seller/";
+        return "redirect:/seller";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public String admin() {
-        return "/index";
+        return "seller/index";
     }
 
     @RequestMapping("/seller/flower")

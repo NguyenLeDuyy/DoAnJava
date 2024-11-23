@@ -34,5 +34,6 @@ public class CartDetail implements Serializable {
     @Column(name = "Price", nullable = false, precision = 18, scale = 2)
     private BigDecimal totalPrice;
 
-    // other fields and methods
+    @Column(name = "CostPrice", nullable = true, precision = 18, scale = 2)
+    private BigDecimal costPrice;
 }

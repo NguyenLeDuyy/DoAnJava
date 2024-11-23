@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -47,11 +49,14 @@ public class User implements Serializable {
     private Cart cart;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Order> orders = new LinkedHashSet<>();
+    private List<Order> orders = new ArrayList<>();
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private UserDetail userDetails;
 
     @OneToMany(mappedBy = "supplier", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Flower> flowers = new LinkedHashSet<>();
+
+    @Column(name = "Address", nullable = true)
+    private String address;
 }

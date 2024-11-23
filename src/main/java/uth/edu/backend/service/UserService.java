@@ -3,6 +3,7 @@ package uth.edu.backend.service;
 import org.springframework.stereotype.Service;
 import uth.edu.backend.entity.Role;
 import uth.edu.backend.entity.User;
+import uth.edu.backend.entity.UserDetail;
 
 import java.util.List;
 
