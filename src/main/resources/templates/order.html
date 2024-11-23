@@ -32,7 +32,6 @@
                             <thead>
                                 <tr>
                                     <th class="order-date">Order Date</th>
-                                    <th>Delivery Date</th>
                                     <th class="price-pr">Order Status</th>
                                     <th class="quantity-box">Quantity</th>
                                     <th>Total Price</th>
@@ -45,18 +44,10 @@
                                     <td class="order-date">
                                         <span><b th:text="${order.orderDate}"></b></span>
                                     </td>
-                                    <td class="name-pr">
-                                        <a th:if="${order.accept != null}" href="#">
-                                            <span th:text="${order.deliveryDate}"></span>
-                                        </a>
-                                        <a th:if="${order.accept == null}">
-                                            <p>Pending</p>
-                                        </a>
-                                    </td>
                                     <td class="price-pr">
                                         <p th:text="${order.orderStatus}"></p>
                                     </td>
-                                    <td class="quantity-box" th:text="${order.quantity}"></td>
+                                    <td class="quantity-box" th:text="${order.get}"></td>
                                     <td class="total-pr">
                                         <p style="color: red" th:text="${order.totalPrice}"></p>
                                     </td>

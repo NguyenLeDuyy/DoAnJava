@@ -5,6 +5,6 @@ import uth.edu.backend.entity.Cart;
 
 @Service
 public interface OrderService {
-    void saveOrder(Cart cart);
+    void saveOrder(Cart cart, Integer userId);
 
 }

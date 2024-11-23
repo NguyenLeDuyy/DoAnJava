@@ -72,8 +72,10 @@ public class OrderMvcController {
 //        if (cart.getCartDetails().size() == 0) {
 //            return "redirect:/cart";
 //        }
-        Order order = new Order();
-        orderService.saveOrder(cart);
+
+//        Order order = new Order();
+//        cart.setId(user.getCart().getId());
+        orderService.saveOrder(cart, Math.toIntExact(user.getId()));
         return "redirect:/order";
     }
 }

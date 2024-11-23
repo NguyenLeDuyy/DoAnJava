@@ -78,30 +78,32 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void saveOrder(Cart cart) {
-        Order order = new Order();
-        order.setOrderStatus("PENDING");
-        Instant lt = Instant.now();
-        order.setOrderDate(lt);
-        order.setTotalPrice(BigDecimal.valueOf(cart.getTotalPrice()));
+    public void saveOrder(Cart cart, Integer userId) {
+    Order order = new Order();
+    order.setOrderStatus("PENDING");
+    Instant lt = Instant.now();
+    order.setOrderDate(lt);
+    order.setTotalPrice(BigDecimal.valueOf(cart.getTotalPrice()));
 
-        List<OrderDetail> orderDetailList = new ArrayList<>();
+    List<OrderDetail> orderDetailList = new ArrayList<>();
 
-        for(CartDetail item : cart.getCartDetails()){
-            OrderDetail orderDetail = new OrderDetail();
-            orderDetail.setOrder(order);
-            orderDetail.setQuantity(item.getQuantity());
-            orderDetail.setFlower(item.getFlower());
-//            orderDetail.setUnitPrice(orderDetail.getCostPrice());
-            orderDetailRepository.save(orderDetail);
-            orderDetailList.add(orderDetail);
-            cartDetailRepository.delete(item);
-        }
-
-        order.setOrderDetails(orderDetailList);
-        cart.setTotalItems(0);
-        cart.setTotalPrice((double) 0);
-        orderRepository.save(order);
-        cartRepository.save(cart);
+    for (CartDetail item : cart.getCartDetails()) {
+        OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setOrder(order);
+        orderDetail.setQuantity(item.getQuantity());
+        orderDetail.setFlower(item.getFlower());
+        orderDetailRepository.save(orderDetail);
+        orderDetailList.add(orderDetail);
+        cartDetailRepository.delete(item);
     }
+
+    order.setCart(cart);
+    order.setOrderDetails(orderDetailList);
+    cart.setTotalItems(0);
+    cart.setTotalPrice(0.0);
+
+    // Save the order and cart
+    orderRepository.save(order);
+    cartRepository.save(cart);
+}
 }

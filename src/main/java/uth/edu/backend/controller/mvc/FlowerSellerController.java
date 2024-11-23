@@ -9,7 +9,6 @@ import uth.edu.backend.entity.Category;
 import uth.edu.backend.entity.Flower;
 import uth.edu.backend.entity.Role;
 import uth.edu.backend.entity.User;
-import uth.edu.backend.repository.CategoryRepository;
 import uth.edu.backend.repository.RoleRepository;
 import uth.edu.backend.service.*;
 

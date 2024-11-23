@@ -9,7 +9,7 @@
         <header th:replace="~{layout/header :: header}" />
 
         <main class="main">
-            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+            <div class="page-header text-center" style="background-image: url('fe/images/page-header-bg.jpg')">
                 <div class="container">
                     <h1 class="page-title">Checkout<span>Shop</span></h1>
                 </div><!-- End .container -->
@@ -107,8 +107,7 @@
 
                                     <button type="submit"
                                         class="btn btn-outline-primary-2 btn-order btn-block">
-                                    <a th:href="@{/order}" class="btn-text">Place Order</a>
-                                    <span class="btn-hover-text">Proceed to Checkout</span>
+                                    <a th:href="@{/save-order}" class="btn btn-warning">Place Order</a>
                                     </button>
                                 </div>
                             </aside>

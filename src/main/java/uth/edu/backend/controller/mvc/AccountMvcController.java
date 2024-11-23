@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import uth.edu.backend.entity.Cart;
-import uth.edu.backend.entity.Role;
-import uth.edu.backend.entity.User;
+import uth.edu.backend.entity.*;
+import uth.edu.backend.repository.CategoryRepository;
+import uth.edu.backend.repository.RoleRepository;
 import uth.edu.backend.repository.UserRepository;
 import uth.edu.backend.service.CartService;
-import uth.edu.backend.service.RoleRepository;
 import uth.edu.backend.service.UserService;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 @SessionAttributes({ "userId", "username", "cartId" })
@@ -50,9 +50,9 @@ public class AccountMvcController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute("username") String username,
-            @ModelAttribute("password") String password,
-            HttpSession session,
-            Model model) {
+                        @ModelAttribute("password") String password,
+                        HttpSession session,
+                        Model model) {
         User user = userService.findByUsername(username);
         if (user != null && user.getPassword().equals(password)) {
             // Set session attributes
@@ -82,7 +82,11 @@ public class AccountMvcController {
     @RequestMapping("/register")
     public String register(Model model) {
         User user = new User();
+
+
         String confirmPassword = new String();
+
+//        user.setRole();
         model.addAttribute("user", user);
         model.addAttribute("success", false);
 
@@ -116,6 +120,10 @@ public class AccountMvcController {
         }
 
         try {
+            Role role = new Role();
+            role.setId(2L);
+            role.setName("USER");
+            user.setRole(role);
             // Attempt to create the user
             if (userService.create(user)) {
                 model.addAttribute("user", user);
@@ -168,12 +176,13 @@ public class AccountMvcController {
     }
 
     @PostMapping("/profile/edit-user")
-    public String update(@ModelAttribute("user") User user) {
-        User existingUser = userService.findById(user.getId());
+    public String update(@ModelAttribute("user") User user, Principal principal) {
+        User existingUser = userService.findByUsername(principal.getName());
         if (user.getPassword() == null || user.getPassword().isEmpty()) {
             user.setPassword(existingUser.getPassword());
         }
         user.setId(existingUser.getId());
+
         if (this.userService.update(user)) {
             return "profile";
         } else {
@@ -183,17 +192,17 @@ public class AccountMvcController {
 
     @PostMapping("/user/register-seller")
     public String registerSeller(Principal principal, Model model) {
-    if (principal == null) {
-        return "redirect:/login";
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        User userExisted = userService.findByUsername(principal.getName());
+        if (userExisted == null) {
+            throw new IllegalArgumentException("User not found");
+        }
+        Role sellerRole = roleRepository.findById(3L).orElseThrow(() -> new IllegalArgumentException("Invalid role ID"));
+        userExisted.setRole(sellerRole);
+        userRepository.save(userExisted);
+        return "redirect:/seller";
     }
-    User userExisted = userService.findByUsername(principal.getName());
-    if (userExisted == null) {
-        throw new IllegalArgumentException("User not found");
-    }
-    Role sellerRole = roleRepository.findById(3L).orElseThrow(() -> new IllegalArgumentException("Invalid role ID"));
-    userExisted.setRole(sellerRole);
-    userRepository.save(userExisted);
-    return "redirect:/seller";
-}
 
 }
